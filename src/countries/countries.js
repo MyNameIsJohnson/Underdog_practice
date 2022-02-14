@@ -1,3 +1,4 @@
+let vowels = ['A', 'E', 'I', 'O', 'U'];
 
 // [ ] What are all of the countries that have “United” in the name?
 
@@ -20,7 +21,6 @@ const getCountriesWithUnited = (countries) => {
 
 
 // [ ] What countries both begin and end with a vowel?
-let vowels = ['A', 'E', 'I', 'O', 'U'];
 let lowerCase = vowels.map(element => { return element.toLowerCase()});
 
 const getCountriesBeginningAndEndingWithVowel = (countries) => {
@@ -98,29 +98,66 @@ const getShortestCountry = (countries) => {
 //     - For example, if the word “BEEKEEPER” were a country, it would be an answer, because it only uses “E”.
 
 const getCountryWithOnlyOneVowel = (countries) => {
-  let countryWithOnlyOneVowel = []
-  let count = 0;
-  // loop countries 
+  let countriesWithOnlyOneVowel = [];
+  // declare empty array countriesWithOnlyOneVowel 
+  // loop through countries and increment
+  // assign country to countries[i]
+  // loop through country 
+  
   for (let i = 0; i < countries.length; i++){
     let country = countries[i];
-    if (countries[i] === ''){
-      break;      
-    }
-    // assign country to countries i 
-    // loop vowels
-    for (let j = 0; j < country.length; j++){
-      // console.log(country[j])
-      // check if country character is vowels at index
-      if (vowels.includes(country[j])){
-        count++
-        countryWithOnlyOneVowel.push(country)
+    
+    console.log('country', country)
+    for (let char of country){
+      let vowelFound = []
+      // let letter = country[j];
+      let vowelCount = 0;
+      
+      if(vowels.includes(char))
+      {
+        vowelFound.push(char);
+        console.log('vowelFound',  vowelFound[0], 'letter', char);
+        console.log('country inner', country)
+        vowelCount++;
+        
+        console.log('vowelCount',vowelCount)
+      }
+      if(vowelFound[0] === char){
+        countriesWithOnlyOneVowel.push(country)
       }
     }
-    // 
-    // 
+// ----- first method tested -----
+    // for (let i = 0; i < countries.length; i++){
+    //   let country = countries[i];
+      
+    //   console.log('country', country)
+    //   for (let j = 0; j < country.length; j++){
+    //     let vowelFound = []
+    //     let letter = country[j];
+  
+    //     if(vowels.includes(country[j]))
+    //     {
+    //       vowelFound.push(letter);
+    //       console.log('vowelFound',  vowelFound[0], 'letter', letter);
+    //       console.log('country inner', country)
+  
+    //     }
+    //       // if on last letter of country
+    //       // 
+    //       // if()){
+  
+    //       // }
+    //     // if (vowelCount)
+    //     console.log(letter)
+    //   }
+       
+    // }
+     
   }
-  return countryWithOnlyOneVowel
+  return countriesWithOnlyOneVowel
+
 }
+
 
 
 
