@@ -7,15 +7,14 @@ const getCountriesWithUnited = (countries) => {
 
   // Iterate countries 
   for ( let i = 0; i < countries.length; i++ ){
-
     // Check if country includes "United"
-    if ( countries[i].includes("United") ){
+    if (countries[i].includes("") ){
       // Push country to empty array
-      countriesWithUnited.push(countries[i])
+      countriesWithUnited.push(countries[i]);
     }
   }
   // return country array
-  return countriesWithUnited
+  return countriesWithUnited;
 }
 
 
@@ -45,22 +44,22 @@ const getCountriesWithMoreThan50PercentVowels = (countries) => {
     for ( let j = 0; j < country.length; j++ ){
       // console.log(country[letter])
       // if it is a vowel
-      if ( vowels.includes(country[j]) ){
+      if ( vowels.includes(country[j].toUpperCase())){
         // increment vowlCount
         vowelCount++ 
       }
     }
+  
     // if  vowelCount > country.length 
     if ( vowelCount > country.length / 2 ){
       // push country to empty countryList
       countryList.push(country);
     }
-    // console.log(country)
-    // console.log(vowelCount)
     vowelCount = 0;
   }
 
-  return countryList;
+
+  return countryList
 }
   
 // Setting up storage to use during a for loop, including counters and arrays
@@ -99,65 +98,23 @@ const getShortestCountry = (countries) => {
 
 const getCountryWithOnlyOneVowel = (countries) => {
   let countriesWithOnlyOneVowel = [];
-  // declare empty array countriesWithOnlyOneVowel 
-  // loop through countries and increment
-  // assign country to countries[i]
-  // loop through country 
-  
-  for (let i = 0; i < countries.length; i++){
-    let country = countries[i];
-    
-    console.log('country', country)
-    for (let char of country){
-      let vowelFound = []
-      // let letter = country[j];
-      let vowelCount = 0;
-      
-      if(vowels.includes(char))
-      {
-        vowelFound.push(char);
-        console.log('vowelFound',  vowelFound[0], 'letter', char);
-        console.log('country inner', country)
-        vowelCount++;
-        
-        console.log('vowelCount',vowelCount)
+  // Loop over every country in the array of countries. For each country:
+  for(let i = 0; i < countries.length; i++){
+    //     Set up a counter of how many distinct vowels we've see.
+    let counter = 0;
+    //     For every vowel, check if that vowel is in the country. If it is, increment the counter.
+    for(let j = 0; j < vowels.length; j++){
+      if(countries[i].toUpperCase().includes(vowels[j])){
+        counter++
       }
-      if(vowelFound[0] === char){
-        countriesWithOnlyOneVowel.push(country)
-      }
+      //     By the end of checking every vowel, if counter is equal to 1, the country is a match for this question, so console.log it
     }
-// ----- first method tested -----
-    // for (let i = 0; i < countries.length; i++){
-    //   let country = countries[i];
-      
-    //   console.log('country', country)
-    //   for (let j = 0; j < country.length; j++){
-    //     let vowelFound = []
-    //     let letter = country[j];
-  
-    //     if(vowels.includes(country[j]))
-    //     {
-    //       vowelFound.push(letter);
-    //       console.log('vowelFound',  vowelFound[0], 'letter', letter);
-    //       console.log('country inner', country)
-  
-    //     }
-    //       // if on last letter of country
-    //       // 
-    //       // if()){
-  
-    //       // }
-    //     // if (vowelCount)
-    //     console.log(letter)
-    //   }
-       
-    // }
-     
+    if(counter === 1){
+      countriesWithOnlyOneVowel.push(countries[i])
+    }
   }
-  return countriesWithOnlyOneVowel
-
+  return countriesWithOnlyOneVowel;
 }
-
 
 
 
