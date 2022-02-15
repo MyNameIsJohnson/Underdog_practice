@@ -3,7 +3,8 @@
 // var textByLine = text.split('\n')
 // console.log(typeof text)
 // console.log(textByLine.length);
-require('./src/wordplay/')
-require('./src/countries/')
-require('./src/babyName/')
+require('./src/wordplay/');
+require('./src/countries/');
+require('./src/babyName/');
+require('./src/nba/');
 
