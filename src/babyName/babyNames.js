@@ -36,14 +36,17 @@ const getLongestBabyName = (babyNames) => {
       break;
     }
     // if longest is greater than baby name 
-    if (longest.length < babyNames[i].length){
-      // push baby name to empty array longestBabyName
-
+    if (babyNames[i].length > longest.length){
+      // push baby name to empty array longestBabyName 
+      longestBabyName = []
+      longestBabyName.push(babyNames[i]);      
+      
+    }   
+    if(babyNames[i].length === longest.length){
       longestBabyName.push(babyNames[i]);
-      // reassign longest to longestBabyName[0]
-      longest = longestBabyName[0];
-
     }
+    // reassign longest to longestBabyName[0]
+    longest = longestBabyName[0]     
   }
   // return longestBabyName
   return longestBabyName
@@ -54,41 +57,50 @@ const getLongestBabyName = (babyNames) => {
 
 // [ ] There is at least one baby name from the top 40 baby names for 2020 that, when spelled backwards, is a valid Scrabble word. Find and print all such names.
 
-const getBabyNamesReversed = (babyNames) => {
-  // empty array babyNamesReversed
-  let babyNamesReversed = [];
+const getScrabbleWordWithArray = (babyNames, scrabbleWords) => {
+
+  let scrabbleWordsFromBabyName = [];
+
   // loop baby names 
   for (let i = 0; i < babyNames.length; i++){
-    let babyNamesReverse = babyNames[i].split('').reverse().join('');
-    babyNamesReversed.push(babyNamesReverse)
-  }
-  return babyNamesReversed
-}
-
-const getScrabbleWordFromBabyName = (babyNames, scrabbleWords) => {
-
-  // declare empty array reversedBabyName
-  let reversedBabyName = [];
-  // loop scrabbleWords
-  for(let i = 0; i < scrabbleWords.length; i++){
-    if(scrabbleWords[i] === ''){
-      break;
+    if(babyNames[i] === ''){
+      continue;
     }
-    // assign scrabbleWord = scrabbleWords[i]
-    let scrabbleWord = scrabbleWords[i];
-    // assign babyNamesReversed = getBabyNamesReversed
-    let babyNamesReversed = getBabyNamesReversed(babyNames);
-    // if babyNamesReverse = scrabbleWord
-    if(babyNamesReversed.includes(scrabbleWord)){
-      // push scrabbleWord to reversedBabyName
-      reversedBabyName.push(scrabbleWord);
+    let babyNameReversed = babyNames[i].split('').reverse().join('').toUpperCase();
+    if(scrabbleWords.includes(babyNameReversed)){
+      scrabbleWordsFromBabyName.push(babyNameReversed)
     }
-  }
-  return reversedBabyName
+  }  
+  return scrabbleWordsFromBabyName
 }
 
 
 //     [ ] Solve this two ways: first with an array to hold the Scrabble words, and then with a dictionary (or set) to hold the Scrabble words. Use timer functions to measure how long it takes to complete this work under each implementation. Why is the time different?
+
+const getScrabbleWordsWithSet = (babyNames, scrabbleWords) => {
+  let textSet = new Set(scrabbleWords)
+  let reversedBabyName = [];
+
+  // loop baby names 
+  for (let i = 0; i < babyNames.length; i++){
+    if(babyNames[i] === ''){
+      continue;
+    }
+    let babyNamesReverse = babyNames[i].split('').reverse().join('').toUpperCase();
+    if(textSet.has(babyNamesReverse)){
+      reversedBabyName.push(babyNamesReverse)
+    }
+  }  
+  return reversedBabyName
+}
+
+const getExecutionTime = (str, func) => {
+  const start = Date.now()
+  console.log(str, func)
+  const duration = Date.now() - start
+  console.log(duration)
+// 
+}
 
 // [ ] What are all of the names that were top 40 baby names in both 1880 and 2020?
 
@@ -96,5 +108,7 @@ const getScrabbleWordFromBabyName = (babyNames, scrabbleWords) => {
 module.exports = {
   getShortestBabyName,
   getLongestBabyName,
-  getScrabbleWordFromBabyName,
+  getScrabbleWordWithArray,
+  getScrabbleWordsWithSet,
+  getExecutionTime,
 }
