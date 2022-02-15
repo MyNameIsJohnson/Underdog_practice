@@ -94,16 +94,53 @@ const getScrabbleWordsWithSet = (babyNames, scrabbleWords) => {
   return reversedBabyName
 }
 
-const getExecutionTime = (str, func) => {
+const getExecutionTime = (testName, func) => {
   const start = Date.now()
-  console.log(str, func)
+  console.log(testName, func)
   const duration = Date.now() - start
   console.log(duration)
-// 
 }
 
 // [ ] What are all of the names that were top 40 baby names in both 1880 and 2020?
 
+const getAllPopularNamesIn1880And2020 = (babyNamesIn1880, babyNamesIn2020) => {
+  // declare empty array popularNames 
+  let popularNames = [];
+  // loop through both list 
+  for ( let i = 0; i < babyNamesIn1880.length; i++){
+    //  check if 2020 list includes 1880
+    if( babyNamesIn1880[i] === ''){
+      continue;
+    }
+    if ( babyNamesIn2020.includes(babyNamesIn1880[i])){
+      //  push 2020 to popularNames
+      popularNames.push(babyNamesIn1880[i])
+    }
+  }
+  return popularNames
+}
+
+const getEveryNameFromBothYearsStartingWithLetter = (babyNamesIn1880, babyNamesIn2020, firstLetter) => {
+  let combinedBabyNames = babyNamesIn1880.concat(babyNamesIn2020)
+  let everyNameFromBothYearsStartingWithLetter = [];
+  for ( let i = 0; i < combinedBabyNames.length; i++){
+
+    if(isFirstLetter(combinedBabyNames[i], firstLetter)){
+      everyNameFromBothYearsStartingWithLetter.push(combinedBabyNames[i])
+    }
+  }
+  return everyNameFromBothYearsStartingWithLetter;
+}
+
+const isFirstLetter = (name, firstLetter) => {
+  if ( name === ''){
+    return false;
+  }
+  if ( name[0] === firstLetter){
+    return true;
+  }else{ 
+    return false}
+} 
 
 module.exports = {
   getShortestBabyName,
@@ -111,4 +148,6 @@ module.exports = {
   getScrabbleWordWithArray,
   getScrabbleWordsWithSet,
   getExecutionTime,
+  getAllPopularNamesIn1880And2020,
+  getEveryNameFromBothYearsStartingWithLetter,
 }

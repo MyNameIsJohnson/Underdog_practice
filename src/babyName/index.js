@@ -10,6 +10,8 @@ const {
   getScrabbleWordWithArray,
   getScrabbleWordsWithSet,
   getExecutionTime,
+  getAllPopularNamesIn1880And2020,
+  getEveryNameFromBothYearsStartingWithLetter,
 } = require('./babyNames');
 
 console.log('getShortestBabyName', getShortestBabyName(babyName2020))
@@ -24,5 +26,8 @@ console.log('getLongestBabyName', getLongestBabyName(babyName2020));
 // const durationSet = Date.now() - startSet
 // console.log(durationSet)
 
-getExecutionTime('getScrabbleWordsWithSet', getScrabbleWordsWithSet(babyName2020, textByLine))
-getExecutionTime('getScrabbleWordWithArray', getScrabbleWordWithArray(babyName2020, textByLine))
+getExecutionTime('getScrabbleWordsWithSet', getScrabbleWordsWithSet(babyName2020, textByLine));
+getExecutionTime('getScrabbleWordWithArray', getScrabbleWordWithArray(babyName2020, textByLine));
+getExecutionTime('getAllPopularNamesIn1880And2020', getAllPopularNamesIn1880And2020(babyName1880, babyName2020));
+getExecutionTime('getEveryNameFromBothYearsStartingWithLetter',getEveryNameFromBothYearsStartingWithLetter(babyName1880, babyName2020, 'W'));
+

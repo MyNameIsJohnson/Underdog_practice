@@ -11,8 +11,6 @@ const {
   getCountryWithOnlyOneVowel 
 } = require('./countries');
 
-
-
 console.log('getCountriesWithUnited', getCountriesWithUnited(countries))
 console.log('getCountriesBeginningAndEndingWithVowel', getCountriesBeginningAndEndingWithVowel(countries))
 console.log('getCountriesWithMoreThan50PercentVowels', getCountriesWithMoreThan50PercentVowels(countries));
