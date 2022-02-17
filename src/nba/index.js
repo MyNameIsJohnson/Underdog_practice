@@ -11,12 +11,22 @@ const { Parser } = require("json2csv");
   fs.writeFileSync("nba.csv", nbaInCsv);
         
   const { 
+    assertEquals,
     findWinnerByYear,
     allYearsThisTeamWon,
     allTeamsThatNeverWon,
-  } = require('./nbaFinals.js')
+  } = require('./nbaFinals.js');
 
-  console.log(findWinnerByYear(nba, '2019' ));
+
+
+
+  let expectedWinnersByYear = 'Toronto Raptors won in 2019'
+  assertEquals(findWinnerByYear(nba, '2019' ), expectedWinnersByYear, 'NBA winner by year', findWinnerByYear(nba, '2019' ))
+
+  let expectedAllYearsThisTeamWon = [2010, 2009, 2002, 2001, 2000, 1988, 1987, 1985, 1982, 1980, 1972]
+  assertEquals(allYearsThisTeamWon(nba, 'Los Angeles Lakers'), expectedAllYearsThisTeamWon, 'All years this team won', allYearsThisTeamWon(nba, 'Los Angeles Lakers'))
+
+
   console.log('allYearsThisTeamWon', allYearsThisTeamWon(nba, 'Los Angeles Lakers'));
   console.log('allTeamsThatNeverWon', allTeamsThatNeverWon(nba))
   
