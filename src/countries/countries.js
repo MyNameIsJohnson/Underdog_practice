@@ -8,7 +8,7 @@ const getCountriesWithUnited = (countries) => {
   // Iterate countries 
   for ( let i = 0; i < countries.length; i++ ){
     // Check if country includes "United"
-    if (countries[i].includes("") ){
+    if (countries[i].includes("United") ){
       // Push country to empty array
       countriesWithUnited.push(countries[i]);
     }
