@@ -1,11 +1,22 @@
 // [ ] Write a function that takes as an argument a year and returns the winner of the NBA finals that year.
+const assertEquals = (actual, expected, testName, func) => {
+  actual = JSON.stringify()
+  expected = JSON.stringify()
+  if( actual === expected ){
+    console.log("Passed: "+ func)
+  }else{
+    console.log("Failed [" + testName + "]: Expected: [" + expected + "] but got: [" + actual)
+  }
+}
 const findWinnerByYear = (file, year) => {
   for (let i = 0; i < file.length; i++) {
     if(file[i].Year === year){
-      return file[i].Winner
+      return file[i].Winner + ' won in ' + year
     }        
   }
 }
+
+
 
 
 // [ ] Write a function that takes as an argument a team name and returns an array of all of the years the team has won the NBA finals.
@@ -17,7 +28,7 @@ const allYearsThisTeamWon = (file, team) =>{
       winners.push(won.Year)   
     };
   })
-  return winners
+  return team + ' won in: ' + winners
 };
 
 // [ ] Which teams have made it to the NBA finals but have never won?
@@ -52,6 +63,7 @@ const allTeamsThatNeverWon = (file) => {
 
 
 module.exports = {
+  assertEquals,
   findWinnerByYear,
   allYearsThisTeamWon,
   allTeamsThatNeverWon,
