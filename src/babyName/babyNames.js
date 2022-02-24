@@ -96,9 +96,11 @@ const getScrabbleWordsWithSet = (babyNames, scrabbleWords) => {
 
 const getExecutionTime = (testName, func) => {
   const start = Date.now()
-  console.log(testName, func)
+  let result = func()
+  console.log(testName, result)
   const duration = Date.now() - start
   console.log(duration)
+  return result;
 }
 
 // [ ] What are all of the names that were top 40 baby names in both 1880 and 2020?

@@ -41,6 +41,27 @@ var textByLine = text.split('\n')
 // console.log('Words without consecutive letters: ', getWordsWithoutConsecutiveLetters(textByLine));
 
 
-const {findAllWordsFromGivenLetters} = require('./mock.js')
-console.log('findAllWordsFromGivenLetters', findAllWordsFromGivenLetters(textByLine, 'SDF'))
- 
+// const {findAllWordsFromGivenLetters} = require('./mock.js')
+// // console.log('findAllWordsFromGivenLetters', findAllWordsFromGivenLetters(textByLine, 'ABCD'))
+
+// const assertEquals = (actual, expected, testName) => {
+//   actual = JSON.stringify(actual)
+//   expected = JSON.stringify(expected)
+//   if(actual === expected){
+//   console.log("Passed " + testName)
+//   }else{
+//     console.log("Failed [" + testName + "]\n Expected: "+expected+" but got "+actual)
+//   }
+// }
+
+// let expected = [
+//   'AA',    'AB',   'ABA',   'ABAC',
+//   'ABACA', 'ABB',  'ABBA',  'ACCA',
+//   'AD',    'ADD',  'BA',    'BAA',
+//   'BABA',  'BAC',  'BACCA', 'BAD',
+//   'CAA',   'CAB',  'CABA',  'CACA',
+//   'CAD',   'DA',   'DAB',   'DABBA',
+//   'DAD',   'DADA'
+// ]
+
+// assertEquals(findAllWordsFromGivenLetters(textByLine, "ABCD"), expected, 'Find All Words From Given Letters')
