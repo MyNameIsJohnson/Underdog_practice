@@ -11,10 +11,13 @@ const { Parser } = require("json2csv");
   // fs.writeFileSync("topMovies.csv", topMovies);
         
   const { 
-    getDistributorTitles 
+    getDistributorTitles,
+    getHighestDomesticSales, 
   } = require('./topMovies')
-  console.log(getDistributorTitles(topMovies, "DreamWorks"))
 
+  // console.log(topMovies)
+  // console.log(getDistributorTitles(topMovies, "DreamWorks"))
+  console.log(getHighestDomesticSales(topMovies, 'Universal Pictures'))
 
 
 })();

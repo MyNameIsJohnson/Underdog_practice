@@ -15,12 +15,35 @@ const getDistributorTitles = (movies, distributor) => {
   return distributorTitle
 } 
 
-
 // - What is the highest grossing moving from Universal Pictures, domestically?
+// get all 'US Sales'
+const getHighestDomesticSales = (movies, distributor) => {
+  // empty array to hold all 'US Sales'
+  let domesticSales = [];
+  let myMovie = {};
+  // loop through movies
+  for(let movie in movies){
+    // grab movies from Universal Pictures 'US Sales' and 
+    // add to array holding
+    if(movies[movie]['Distributor'] === distributor){
+      domesticSales.push([movies[movie]['Title'], movies[movie]['US Sales']])
+    }
+  }
+  // use the array holding all 'US Sales' to find highest gross
+  // sort the array in descending order and
+  domesticSales.sort(function(a, b) {
+    return b[1] - a[1];
+  })
+  // return first index  
+  return domesticSales[0]    
+}
+
+
 // -  What distributor has the most films on this list?                                                                             
 // - What is the earliest year on this list, and what were the films from that year?
 // - What is the distribution of ratings? (How many are PG, PG-13, R, etc.?)  
 
 module.exports = {
   getDistributorTitles,
+  getHighestDomesticSales,
 }
