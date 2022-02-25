@@ -85,37 +85,21 @@ const getAllMVP = (file) => {
   for (let [player, count] of Object.entries(mvpObj)){
 
     // take count to see if it exist in dictionary
-    if(mvpPlayers[count + ' times'] === undefined){
-      mvpPlayers[count + ' times'] = player + ', '
+    if(mvpPlayers[count + ' times:'] === undefined){
+      mvpPlayers[count + ' times:'] = player
     }else{
-      mvpPlayers[count + ' times'] += player + ', '
+      mvpPlayers[count + ' times:'] +=  ', ' + player 
     }
     // if yes add player to array inside dictionary 
     // else create new key value pair with count and player inside an array
   }
-  var r = Object.keys(mvpPlayers).sort().reverse()
-  console.log(r);
+  var r = Object.entries(mvpPlayers).sort().reverse();
 
-  var sorted ={}
-
-//look like JS Sorted this ASC
-
-  r.forEach(k => {
-        sorted[k] = mvpPlayers[k]
-    });
-
-console.log(JSON.stringify(sorted));
-
-// So use Array
-
-var sorted =[]
-
-
-  r.forEach(k => {
-        sorted.push({"key":k ,"value": mvpPlayers[k]})
-    });
-
-console.log(JSON.stringify(sorted));
+  let result = [];
+  for ( let i = 0; i < r.length; i++){
+    result.push(r[i].join(' '));
+  }
+  return result  
 } 
 
 
@@ -131,13 +115,20 @@ module.exports = {
 
 
 // loop through string 
-  // remove all spaces, puncutation, and non alphabetical characters 
-  // change string to all lowercase
-  // seperate each character in the string 
-  // reverse the order of the string 
-  // join all the characters into one string
-  // check if string is equal to joined string
-    // if they are equal return true
-    // if they are not equal return false
-
-    
+let str = "A man, a plan, a canal. Panama"
+// remove all spaces, puncutation, and non alphabetical characters 
+// and change string to all lowercase
+let string = str.replace(/[^0-9a-zA-Z]/g,'').toUpperCase()
+// seperate each character in the string 
+// reverse the order of the string 
+// join all the characters into one string
+let reversedString = string.split('').reverse().join('');
+// check if string is equal to joined string
+if(string === reversedString){
+// if they are equal return true
+  console.log(true) 
+  // if they are not equal return false
+}else {
+  console.log(false)
+}
+  
