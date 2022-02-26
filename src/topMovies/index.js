@@ -13,12 +13,15 @@ const { Parser } = require("json2csv");
   const { 
     getDistributorTitles,
     getHighestDomesticSales, 
+    getDistributorWithMostMovies,
+    getEarlistYearMovies,
   } = require('./topMovies')
 
   // console.log(topMovies)
   // console.log(getDistributorTitles(topMovies, "DreamWorks"))
-  console.log(getHighestDomesticSales(topMovies, 'Universal Pictures'))
-
+  // console.log(getHighestDomesticSales(topMovies, 'Universal Pictures'))
+  // console.log(getDistributorWithMostMovies(topMovies))
+  console.log(getEarlistYearMovies(topMovies))
 
 })();
 

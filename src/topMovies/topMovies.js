@@ -20,7 +20,6 @@ const getDistributorTitles = (movies, distributor) => {
 const getHighestDomesticSales = (movies, distributor) => {
   // empty array to hold all 'US Sales'
   let domesticSales = [];
-  let myMovie = {};
   // loop through movies
   for(let movie in movies){
     // grab movies from Universal Pictures 'US Sales' and 
@@ -39,11 +38,58 @@ const getHighestDomesticSales = (movies, distributor) => {
 }
 
 
-// -  What distributor has the most films on this list?                                                                             
+// -  What distributor has the most films on this list?
+const getDistributorWithMostMovies = (movies) => {
+  let obj = {};
+  // let obj = []
+  // find the distributors from movies
+  for(let movie in movies){
+    // add distributors empty obj
+    if(obj[movies[movie]['Distributor']] === undefined){
+      obj[movies[movie]['Distributor']] = 1
+    }else {
+      obj[movies[movie]['Distributor']]++
+    }
+  }
+  // get obj entries
+  let distributors = Object.entries(obj)
+  // assign empty string to add highestDistributor found
+  let highestDistributor = '';
+  // assign a value to highest from value of distributors 
+  let highest = distributors[0][1];
+  // loop through distributors
+  for (let distributor in distributors){
+    if(highest < distributors[distributor][1]){
+      highestDistributor = distributors[distributor][0];
+      highest = distributors[distributor][1]
+    }
+  }
+    return highestDistributor
+}
+
 // - What is the earliest year on this list, and what were the films from that year?
+
+// collect all Release Date 
+const getEarlistYearMovies = (movies) => {
+  let dates = [];
+  // add all titles and dates to array
+  for ( let movie in movies){
+    // sort date in ascending order
+    // console.log(movies[movie]['Release Date'])
+    dates.push(movies[movie]['Release Date']).sort()
+
+  }
+  // let earliestRelease = dates.sort()[0]
+  console.log(dates)
+
+}
+
+
 // - What is the distribution of ratings? (How many are PG, PG-13, R, etc.?)  
 
 module.exports = {
   getDistributorTitles,
   getHighestDomesticSales,
+  getDistributorWithMostMovies,
+  getEarlistYearMovies,
 }
