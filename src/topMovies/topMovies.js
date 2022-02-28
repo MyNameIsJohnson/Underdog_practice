@@ -71,25 +71,49 @@ const getDistributorWithMostMovies = (movies) => {
 
 // collect all Release Date 
 const getEarlistYearMovies = (movies) => {
-  let dates = [];
+  let earlistYearMovies = [];
   // add all titles and dates to array
   for ( let movie in movies){
     // sort date in ascending order
+    // console.log(movies[movie]['Title'])
     // console.log(movies[movie]['Release Date'])
-    dates.push(movies[movie]['Release Date']).sort()
+    earlistYearMovies.push([movies[movie]['Title'], movies[movie]['Release Date']])
 
   }
-  // let earliestRelease = dates.sort()[0]
-  console.log(dates)
-
+  earlistYearMovies.sort(function(a, b) {
+    return a[1] - b[1];
+  })
+  return earlistYearMovies[0][0]
 }
 
 
 // - What is the distribution of ratings? (How many are PG, PG-13, R, etc.?)  
+
+const getRatingCount = (movies) => {
+// find all the Rating of movies
+  let ratings = {};
+  // loop through movies at movie at Rating
+  for(let movie in movies){
+    // console.log(movies[movie]['Rating'])
+    // add them to ratings object
+    // if ratings at movie is undefined 
+    if(ratings[movies[movie]['Rating']] ===  undefined){
+      // ratings at movie at Rating equals 1
+      ratings[movies[movie]['Rating']] = 1
+      // else ratings at movie at Rating increment
+    }else {
+      ratings[movies[movie]['Rating']]++
+    }
+  }
+  // ratings = JSON.stringify(ratings)
+  return ratings[0]
+}
+
 
 module.exports = {
   getDistributorTitles,
   getHighestDomesticSales,
   getDistributorWithMostMovies,
   getEarlistYearMovies,
+  getRatingCount,
 }
