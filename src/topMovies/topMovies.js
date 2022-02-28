@@ -91,22 +91,23 @@ const getEarlistYearMovies = (movies) => {
 
 const getRatingCount = (movies) => {
 // find all the Rating of movies
-  let ratings = {};
+  let ratingsCount = {};
   // loop through movies at movie at Rating
   for(let movie in movies){
     // console.log(movies[movie]['Rating'])
     // add them to ratings object
     // if ratings at movie is undefined 
-    if(ratings[movies[movie]['Rating']] ===  undefined){
+    if(ratingsCount[movies[movie]['Rating']] ===  undefined){
       // ratings at movie at Rating equals 1
-      ratings[movies[movie]['Rating']] = 1
+      ratingsCount[movies[movie]['Rating']] = 1
       // else ratings at movie at Rating increment
     }else {
-      ratings[movies[movie]['Rating']]++
+      ratingsCount[movies[movie]['Rating']]++
     }
   }
   // ratings = JSON.stringify(ratings)
-  return ratings[0]
+  let ratings = Object.entries(ratingsCount)
+  return ratings
 }
 
 
