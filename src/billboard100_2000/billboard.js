@@ -15,6 +15,10 @@ const getBillboardNumberOneHits = (billboard) => {
     }    
   }
   const billboardNumberOneHits = [...new Set(billboardNumberOnes)]
+
+  // let billboardNumberOneHits = billboardNumberOnes.filter((c, index) => {
+  //   return billboardNumberOnes.indexOf(c) === index;
+  // })
   return billboardNumberOneHits
 }
 module.exports = {
