@@ -105,9 +105,9 @@ const getRatingCount = (movies) => {
       ratingsCount[movies[movie]['Rating']]++
     }
   }
-  // ratings = JSON.stringify(ratings)
+  // rating = JSON.stringify(ratingsCount)
   let ratings = Object.entries(ratingsCount)
-  return ratings
+  return ratings.sort()
 }
 
 
