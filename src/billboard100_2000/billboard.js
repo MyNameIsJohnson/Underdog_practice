@@ -14,17 +14,51 @@ const getBillboardNumberOneHits = (billboard) => {
       billboardNumberOnes.push(`${billboard[song]['song']} - ${billboard[song]['artist']}`)
     }    
   }
-  const billboardNumberOneHits = [...new Set(billboardNumberOnes)]
+  // remove duplicates with set
+  // const billboardNumberOneHits = [...new Set(billboardNumberOnes)]
 
-  // let billboardNumberOneHits = billboardNumberOnes.filter((c, index) => {
-  //   return billboardNumberOnes.indexOf(c) === index;
-  // })
+  // remove duplicates with filter and indexOf
+  let billboardNumberOneHits = billboardNumberOnes.filter((c, index) => {
+    return billboardNumberOnes.indexOf(c) === index;
+  })
   return billboardNumberOneHits
 }
-module.exports = {
-  getBillboardNumberOneHits,
-}
+
 
 // [ ] What song was the #1 song for the most weeks of 2000, who was the artist, and how many weeks was it at #1?
+
+// look through billboard list and collect all the #1 songs, and its weeks. Sort the list by weeks by descending order and return the first artist and how many weeks
+
+const getNumberHitArtistAndWeeks = (billboard) => {
+  let artistAndWeeks = [];
+  // loop through billboard at 
+  // billboard at song
+  for( let song in billboard){
+    let songs = billboard[song];    
+    // if billboard at song rank equal #1
+    
+    if(songs['rank'] === '1'){
+      // push week and artist to empty array
+      artistAndWeeks.push([songs['weeks-on-board'], songs['song'], songs['artist']]);
+    }    
+  }
+  // sort array in descending order
+  artistAndWeeks.sort((a, b) => {
+    return b[0] - a[0] 
+  });
+  let hitSong = artistAndWeeks[0];
+  let weeks = hitSong[0];
+  let artist = hitSong[1];
+  let song = hitSong[2]
+  // return first index of array
+  return `#1 billboard song was ${song} by ${artist} for ${weeks} weeks`
+}
+
+
 // [ ] What artist had the most songs chart in 2000, and what were those songs?
 // [ ] What song(s) were on the charts (anywhere on the charts) for the most weeks of 2000?
+
+module.exports = {
+  getBillboardNumberOneHits,
+  getNumberHitArtistAndWeeks,
+}

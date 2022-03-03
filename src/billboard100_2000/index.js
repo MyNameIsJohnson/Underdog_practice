@@ -6,10 +6,13 @@ const csv = require('csvtojson');
 
   const { 
     getBillboardNumberOneHits,
+    getNumberHitArtistAndWeeks,
    } = require('./billboard.js')
 
   //  console.log(billboard)
 
 
-  console.log('Billboard #1 Hits: ', getBillboardNumberOneHits(billboard))
+  // console.log('Billboard #1 Hits: ', getBillboardNumberOneHits(billboard));
+
+  console.log(getNumberHitArtistAndWeeks(billboard))
 })();
