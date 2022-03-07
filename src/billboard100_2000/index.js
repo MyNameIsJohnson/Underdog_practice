@@ -8,6 +8,7 @@ const csv = require('csvtojson');
     getBillboardNumberOneHits,
     getNumberHitArtistAndWeeks,
     getArtistMostCharted,
+    getSongsWithMostWeeks,
    } = require('./billboard.js')
 
   //  console.log(billboard)
@@ -16,5 +17,6 @@ const csv = require('csvtojson');
   // console.log('Billboard #1 Hits: ', getBillboardNumberOneHits(billboard));
 
   // console.log(getNumberHitArtistAndWeeks(billboard))
-  console.log('getArtistMostCharted', getArtistMostCharted(billboard))
+  // console.log('getArtistMostCharted', getArtistMostCharted(billboard))
+  console.log(getSongsWithMostWeeks(billboard))
 })();

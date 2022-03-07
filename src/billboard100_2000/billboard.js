@@ -61,20 +61,20 @@ const getNumberHitArtistAndWeeks = (billboard) => {
 
 const getArtistMostCharted = (billboard) => {
   // declare countArtist as an empty object to keep track of artist and count
-  let countArtiist = {}; 
+  let artistCount = {}; 
   // loop through billboard at chart 
   for ( let chart in billboard ){
     // assign currentChart to billboard at chart
     let currentChart = billboard[chart];
-    // if countArtiist[currentChart]['artist'] is undefined countArtist[currentChart]['artist'] = 1. Otherwise countArtist[currentChart]['artist'] increment
-    if (countArtiist[currentChart['artist']] === undefined){
-      countArtiist[currentChart['artist']] = 1;
+    // if artistCount[currentChart]['artist'] is undefined countArtist[currentChart]['artist'] = 1. Otherwise countArtist[currentChart]['artist'] increment
+    if (artistCount[currentChart['artist']] === undefined){
+      artistCount[currentChart['artist']] = 1;
     }else {
-      countArtiist[currentChart['artist']]++
+      artistCount[currentChart['artist']]++
     }
   }
  
-  let topArtist = Object.entries(countArtiist).sort((a, b) => {
+  let topArtist = Object.entries(artistCount).sort((a, b) => {
     return b[1] - a[1];    
   })[0][0]
   
@@ -89,11 +89,36 @@ const getArtistMostCharted = (billboard) => {
 }
 
 
-
 // [ ] What song(s) were on the charts (anywhere on the charts) for the most weeks of 2000?
+
+// search the billboard for all weeks on charts. collect all charts into array. sort descending and return first on from array. use that data and search for the song with that amount of weeks
+
+const getSongsWithMostWeeks = (billboard) => {
+  let weeks = []; 
+  for(let chart in billboard){
+    if(billboard[chart]['weeks-on-board']){
+      weeks.push(billboard[chart]['weeks-on-board'])
+    }
+  }
+  weeks.sort((a, b) =>{
+    return b -a 
+  })
+  console.log(weeks[0])
+  let songsWithMostWeeks = []
+  for( let chart in billboard){
+    if ( billboard[chart]['weeks-on-board'] === weeks[0]){
+      songsWithMostWeeks.push(billboard[chart]['song'])
+    }
+  }
+
+  return songsWithMostWeeks
+}
+
+
 
 module.exports = {
   getBillboardNumberOneHits,
   getNumberHitArtistAndWeeks,
   getArtistMostCharted,
+  getSongsWithMostWeeks,
 }
