@@ -7,6 +7,7 @@
 // "Smooth" - Santana Featuring Rob Thomas
 // "Independent Women Part I" - Destiny's Child
 
+
 const getBillboardNumberOneHits = (billboard) => {
   let billboardNumberOnes = [];
   for ( let chart in billboard ){
@@ -95,9 +96,9 @@ const getArtistMostCharted = (billboard) => {
 
 const getSongsWithMostWeeks = (billboard) => {
   let weeks = []; 
-  for(let chart in billboard){
-    if(billboard[chart]['weeks-on-board']){
-      weeks.push(billboard[chart]['weeks-on-board'])
+  for(let chart of billboard){
+    if(chart['weeks-on-board']){
+      weeks.push(chart['weeks-on-board'])
     }
   }
   weeks.sort((a, b) =>{
@@ -105,14 +106,93 @@ const getSongsWithMostWeeks = (billboard) => {
   })
   console.log(weeks[0])
   let songsWithMostWeeks = []
-  for( let chart in billboard){
-    if ( billboard[chart]['weeks-on-board'] === weeks[0]){
-      songsWithMostWeeks.push(billboard[chart]['song'])
+  for( let chart of billboard){
+    // console.log(chart)
+    if ( chart['weeks-on-board'] === weeks[0]){
+      songsWithMostWeeks.push(chart['song'])
     }
   }
 
   return songsWithMostWeeks
 }
+
+// how many one hit wonders on billboard. 
+// searching the billboard for all charts that only appear once in weeks on board
+
+const getOneHits = (billboard) => {
+  // return billboard.reduce(
+  //   (countOfOneHitWonders, currentSongOnChart) => {
+  //     if (currentSongOnChart['weeks-on-board'] == 1) {
+  //       return countOfOneHitWonders + 1
+  //     } else {
+  //       return countOfOneHitWonders
+  //     }
+  //   },
+  //   0
+  // )
+  // return billboard.reduce(
+  //   (previous, current) => 
+  //     current['weeks-on-board'] == 1 ? previous + 1 : previous, 
+  //   0
+  // )
+  let oneHits = [];
+  for(let chart in billboard){
+    if(billboard[chart]['weeks-on-board'] === '1'){
+      oneHits.push(billboard[chart]['weeks-on-board'])
+    }
+  }
+  return oneHits.length
+}
+
+// Find artist(s) who is a one-hit wonders in 2000. One hit wonder is an artist with only one song
+
+// 
+
+
+
+const getArtistsWithOneHits = (billboard) =>{
+  // data should be artist and count
+  let artistCount = {}
+  for(let chart of billboard){
+    let artist = chart['artist'];
+    if(artistCount[artist] === undefined){
+      artistCount[artist] = 1
+    }else{
+      artistCount[artist]++
+    }
+  }
+
+  let oneHitArtists = [];  
+
+  for(let [artist, count] of Object.entries(artistCount)){
+    if(count === 1){
+      oneHitArtists.push(artist);
+    }
+  }
+  return oneHitArtists
+  
+}
+const getPeakRankByArtist = (billboard, artistsNames) => {
+  let peakRankByArtist = {};
+
+  for ( let chart of billboard ){
+    let artistName = undefined;
+    // check for true or false
+    if (artistsNames.includes(chart['artist'])){
+      artistName = chart['artist'];
+    }
+    let rank = Number(chart['peak-rank']);
+    peakRankByArtist[artistName] = rank;
+  }
+  return peakRankByArtist
+}
+
+const getSortedOneHitWondersByPeakRank = (billboard) => {
+  let artists = getArtistsWithOneHits(billboard);
+  let artistsByPeakRank = getPeakRankByArtist(billboard, artists);
+  return artistsByPeakRank
+}
+
 
 
 
@@ -121,4 +201,7 @@ module.exports = {
   getNumberHitArtistAndWeeks,
   getArtistMostCharted,
   getSongsWithMostWeeks,
+  getOneHits,
+  getArtistsWithOneHits,
+  getSortedOneHitWondersByPeakRank,
 }

@@ -1,0 +1,99 @@
+  {
+    rank: '98',
+    song: 'I Know',
+    artist: 'Sunday',
+    'last-week': '',
+    'peak-rank': '98',
+    'weeks-on-board': '1',
+    date: '2000-12-30'
+  }
+
+
+  type of output is an array
+
+  array element is string of artist Name
+
+  {
+    Sunday: 1, 
+    Inskill: 1, 
+    9 Days: 3,
+  }
+
+  1. create object where the key is that artist and value is the number of times they appear in the list. 
+
+  2. iterate over the input and increment the count for each artist.
+
+  3. create output array
+
+  4. iterate over key value pairs and input artist in output array if count is 1
+
+  5. return output array
+
+
+Try: 
+  Sorting artist by peak rank 
+
+  1. what is the input? billboard 
+
+  2. getArtistsWithOneHits is a variable used to find the peak ranks of each artist listed  
+
+  3. check peak rank of all artist from step 2. create new object to hold artist and peak rank 
+
+  Output: {
+    'Nas': 1,
+    'Xzibit': 3,
+  }
+
+  4. convert the object into an array using Object.entries that returns artist as index 0 and peak rank as index 1 -> ['artist', 1]
+  
+  5. sort list of by peak rank
+
+  6. return sorted array list of strings of artist and peak rank
+
+  Output: [
+    ['NewSong', 23],
+    ['Xzibit', 25], 
+    ...
+  ]
+
+  Other ways to solve
+  
+
+
+  Challenge: 
+    additional way to solve using lease amount of extra data structures
+
+    sorting input 
+    create output without data structure 
+    
+
+    
+Front → [] ← Back // initially empty
+
+Front → [1] ← Back // Push the operand onto the stack
+Front → [3, 1] ← Back // Push the operand onto the stack
+Front → [4, 3, 1] ← Back // Push the operand onto the stack
+Front → [12, 1] ← Back // Pop the first 2 operands off the stack, apply the operator, and push the result back onto the stack
+Front → [13] ← Back // Pop the first 2 operands off the stack, apply the operator, and push the result back onto the stack
+Front → [2, 13] ← Back // Push the operand onto the stack
+Front → [11] ← Back // Pop the first 2 operands off the stack, apply the operator, and push the result back onto the stack
+
+Input: “1 3 4 * + 2 -"
+Output: 11
+
+
+Write code that:
+
+- Accepts a string (either as a command-line argument or as an argument to a function)
+- Prints out the words that can be made from those characters, along with their Scrabble scores, one word per line, in descending score order
+
+Example input and output:
+
+`$ python scrabble_cheater.py SPCQEIU  # Use any language you like.`
+`17 piques`
+`17 equips`
+`16 quips`
+`16 pique`
+`16 equip`
+`15 quip`
+`…`
