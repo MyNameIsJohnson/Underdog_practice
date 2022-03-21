@@ -10,7 +10,9 @@ const postfix = (input) => {
         throw "malformed expression"
       }
       let val1 = numbers.shift()
+
       let val2 = numbers.shift()
+
       switch(token){
         case '+': 
           numbers.unshift(val2+val1);
@@ -34,7 +36,7 @@ const postfix = (input) => {
     console.log(numbers)
 
   } 
-  return numbers[0] 
+  return numbers
 }
 console.log(postfix('2 +'))
 

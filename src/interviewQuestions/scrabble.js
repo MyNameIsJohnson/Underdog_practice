@@ -68,10 +68,52 @@ const removeWordsWithDuplicateLetters = (words) => {
   return result
 }
 
+
+
+const calculateScore = (words, input, scores) => {
+  // 1. assign empty results array for collecting word and score, and a  score to keep count
+  let results = [];
+  let score = 1;
+  
+  // 2. loop each word from words array by passing in the result of removeWordsWithDuplicateLetters. 
+  let scrabbleWord = removeWordsWithDuplicateLetters(getWordsFromGivenLetters(words, input))
+  for (let word of scrabbleWord){
+    word = word.toLowerCase()
+    // 3. loop through score object
+    console.log('word', word)
+    for (let letter of word){
+      console.log('letter', letter)
+      
+      for(let value in scores){
+        // console.log('value', scores[value])
+        // console.log('value1', value)
+        // 4. check each letter of the word, if it equals to scores[letter] increment score count 
+        // console.log('letter', letter)
+        if(letter === value){
+          console.log('scores[value]',scores[value])
+          score += scores[value]
+        }
+        // 5. if on last letter of word, push word and score to results, set score to 0
+        if(letter === word[word.length - 1]){
+          results.push(score + ' ' + word);
+          score = 0
+          break;
+
+        }
+        
+      }
+    }
+    
+  }
+
+  return results
+
+}
 // calculate the points for eash word returned from removeWordsWithDuplicateLetters(getWordsFromGivenLetters(textByLine, 'SPCQEIU')))
 
 module.exports = {
   getWordsFromGivenLetters,
   removeWordsWithDuplicateLetters,
+  calculateScore,
 }
 
