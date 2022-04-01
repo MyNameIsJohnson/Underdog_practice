@@ -176,13 +176,14 @@ const getPeakRankByArtist = (billboard, artistsNames) => {
   let peakRankByArtist = {};
 
   for ( let chart of billboard ){
-    let artistName = undefined;
+    let artistName = chart['artist'];
     // check for true or false
-    if (artistsNames.includes(chart['artist'])){
-      artistName = chart['artist'];
+    if (artistsNames.includes(artistName)){
+      let rank = Number(chart['peak-rank']);
+      
+      peakRankByArtist[artistName] = rank;
+      
     }
-    let rank = Number(chart['peak-rank']);
-    peakRankByArtist[artistName] = rank;
   }
   return peakRankByArtist
 }
@@ -190,7 +191,11 @@ const getPeakRankByArtist = (billboard, artistsNames) => {
 const getSortedOneHitWondersByPeakRank = (billboard) => {
   let artists = getArtistsWithOneHits(billboard);
   let artistsByPeakRank = getPeakRankByArtist(billboard, artists);
-  return artistsByPeakRank
+  
+  let artistAndRank = Object.entries(artistsByPeakRank).sort((a,b) =>{
+    return b[1] - a[1]
+  })
+  return artistAndRank
 }
 
 
@@ -204,4 +209,5 @@ module.exports = {
   getOneHits,
   getArtistsWithOneHits,
   getSortedOneHitWondersByPeakRank,
+  
 }

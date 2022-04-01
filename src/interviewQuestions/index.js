@@ -6,6 +6,7 @@ const {
   getWordsFromGivenLetters,
   removeWordsWithDuplicateLetters,
   calculateScore,
+  replaceBlanks,
 } = require('./scrabble');
 
 scores = {
@@ -36,8 +37,7 @@ scores = {
   "y": 4,
   "z": 10
 } 
-for ( let letter in scores){
-  console.log(scores[letter])
-}
-console.log(calculateScore(textByLine, "SPCQEIU", scores))
+
+console.log('replace',replaceBlanks("SIN_", scores))
+console.log(calculateScore(textByLine, "SIN_", scores))
 
