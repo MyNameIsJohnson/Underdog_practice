@@ -69,37 +69,32 @@ const replaceBlanks = (stringOfLetters, scores) => {
 }
 const getWordsFromGivenLetters = (sowpods, stringOfLetters)=>{
 
-  let letters = stringOfLetters.split('');
   // empty array allWordsFromGivenLetters
   let allWordsFromGivenLetters = [];
-  // letters = split stringOfLetters
-  if (Array.isArray(stringOfLetters)){
-    for(let i = 0; i < stringOfLetters.length; i++){
-      letters = stringOfLetters[i].split('');
-      
-    }
-  }
-  // create newLetters [] to push in 
 
-  for (let i = 0; i < sowpods.length; i++){    
+  for (let i = 0; i < sowpods.length; i++){  
+    if(sowpods[i] === ''){
+      continue;
+    }  
+    let letters = stringOfLetters.split('');
     // assign word = sowpods[i]
-    let word = sowpods[i];
+    let word = sowpods[i].split('');
     // loop word 
+    // how to spell word from letters
 
-    for (let j = 0; j < word.length; j++){
-      // if letters includes word[j]
-      // check if letter is _ if so pass in a letter from score key(which are letters of the alphabet)
-      // 
-
-      if (!letters.includes(word[j])){
-        // continue
-        break;
-      }      
-      // check if letterOfWord[i] is on last index
-      if (j === word.length -1 ){        
-        allWordsFromGivenLetters.push(word)
+    if(word.length > letters.length){
+      continue;
+    }
+    
+    for(let j = 0; j < letters.length; j++){
+      if(word.includes(letters[j])){
+        word.splice(word.indexOf(letters[j]), 1)
       }
     }
+    if(word.length === 0){
+      allWordsFromGivenLetters.push(sowpods[i])
+    }
+
   }
   return allWordsFromGivenLetters
 }
@@ -136,7 +131,7 @@ const calculateScore = (words, input, scores) => {
         //   score = 0
         //   break;
         // }        
-      // }
+        
     }  
     results.push(`${score} ${word}`);
   }

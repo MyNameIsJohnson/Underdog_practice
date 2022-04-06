@@ -38,6 +38,5 @@ scores = {
   "z": 10
 } 
 
-console.log('replace',replaceBlanks("SIN_", scores))
-console.log(calculateScore(textByLine, "SIN_", scores))
+console.log(getWordsFromGivenLetters(textByLine,"BOSS"))
 

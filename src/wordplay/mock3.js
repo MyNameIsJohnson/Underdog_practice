@@ -51,14 +51,18 @@ const checkProAndIng = (sowpods) => {
 const getShortest = (sowpods) => {
   let words = checkProAndIng(sowpods);
   let shortest = words[0];
-  let shortestWords = [];
+  let shortestWords = []
   for(let i = 0; i < words.length; i++){
-    if(words[i].length <= shortest.length){
+    if(words[i].length < shortest.length){
       shortestWords.push(words[i])
-      shortest=words[i]
     }
   }
-return shortestWords
+  shortest = shortestWords[0]
+
+  // let shortestWord = shortestWords.sort((a,b) => 
+  //   a.length - b.length
+  // )
+  return shortestWords
 }
 
-getShortest(textByLine)
+console.log('shortestWords',getShortest(textByLine))
