@@ -19,11 +19,8 @@ var charDoesNotRepeats = function(str) {
   //   }
   // }
   // return true;
-
   let setString = new Set(str);
-
   return setString.size === str.length
-
 }
 
 const removeWordsWithDuplicateLetters = (words) => {
@@ -40,16 +37,11 @@ const removeWordsWithDuplicateLetters = (words) => {
   // return result
 }
 
-
-
-
-// how to convert _ to equal any letter (wildcard)
-// 
-const replaceBlanks = (stringOfLetters, scores) => {
-  let listOfStringOfLetters = []
-  let letters = stringOfLetters.split('');
+const replaceBlanks = (stringOfTiles, scores) => {
+  let listOfStringOfTiles = []
+  let letters = stringOfTiles.split('');
   for(let keys in scores){
-    let stringWithReplacedBlank = []
+    let tilesWithReplacedBlank = []
     for (let i = 0; i < letters.length; i++){
       let letter = letters[i]
       let key; 
@@ -57,93 +49,89 @@ const replaceBlanks = (stringOfLetters, scores) => {
       if (letter === ('_')){
         letter = letter.replace("_", key);
       }
-      stringWithReplacedBlank.push(letter)
+      tilesWithReplacedBlank.push(letter)
     }
-    listOfStringOfLetters.push(stringWithReplacedBlank)
+    listOfStringOfTiles.push(tilesWithReplacedBlank)
   }
   let results = []
-  for ( let i = 0; i < listOfStringOfLetters.length; i++){
-    results.push(listOfStringOfLetters[i].join(''))
+  for ( let i = 0; i < listOfStringOfTiles.length; i++){
+    results.push(listOfStringOfTiles[i].join(''))
   }
   return results
 }
-const getWordsFromGivenLetters = (sowpods, stringOfLetters)=>{
 
+const getWordsFromGivenLetters = (dictionary, stringOfTiles)=>{
   // empty array allWordsFromGivenLetters
   let allWordsFromGivenLetters = [];
-
-  for (let i = 0; i < sowpods.length; i++){  
-    if(sowpods[i] === ''){
-      continue;
-    }  
-    let letters = stringOfLetters.split('');
-    // assign word = sowpods[i]
-    let word = sowpods[i].split('');
-    // loop word 
-    // how to spell word from letters
-
-    if(word.length > letters.length){
+  for (let i = 0; i < dictionary.length; i++){  
+    if(dictionary[i] === ''){
       continue;
     }
-    
+    let letters = stringOfTiles.split('');
+    // assign word = dictionary[i]
+    let word = dictionary[i].split('');
+    // loop word 
+    // how to spell word from letters      
+    if(word.length > letters.length){
+      continue;
+    }      
     for(let j = 0; j < letters.length; j++){
       if(word.includes(letters[j])){
         word.splice(word.indexOf(letters[j]), 1)
       }
     }
     if(word.length === 0){
-      allWordsFromGivenLetters.push(sowpods[i])
-    }
-
-  }
+      allWordsFromGivenLetters.push(dictionary[i])
+    }      
+  }  
   return allWordsFromGivenLetters
 }
 
+const getWordsFromGivenArray = (dictionary, arrayOfTiles) => {
+  let allWordsFromGivenArray = [];
+  for(let i = 0; i < arrayOfTiles.length; i++){
+    let tiles = getWordsFromGivenLetters(dictionary, arrayOfTiles[i])
+    if(tiles.length === 0){
+      continue;
+    }
+    allWordsFromGivenArray.push(tiles);
+  }
+  return allWordsFromGivenArray.flat()
+}
+
 // calculate the points for eash word returned from removeWordsWithDuplicateLetters(getWordsFromGivenLetters(textByLine, 'SPCQEIU')))
-const calculateScore = (words, input, scores) => {
+const calculateScore = (dictionary, stringOfTiles, scores) => {
   // 1. assign empty results array for collecting word and score, and a  score to keep count
   let results = [];
-  
-  // if input includes "_",
-  // 2. loop each word from words array by passing in the result of removeWordsWithDuplicateLetters. 
-  let scrabbleWord = removeWordsWithDuplicateLetters(getWordsFromGivenLetters(words, input))
-  for (let word of scrabbleWord){
+  let scrabbleWords;
+  let hasBlank = stringOfTiles.includes('_');
+  if(hasBlank){
+    let arrayOfTiles = replaceBlanks(stringOfTiles, scores);
+    scrabbleWords = getWordsFromGivenArray(dictionary, arrayOfTiles);
+  }else {
+    scrabbleWords = getWordsFromGivenLetters(dictionary, stringOfTiles);  
+  }
+  for (let word of scrabbleWords){
     let score = 0;
     word = word.toLowerCase()
     // 3. loop through score object
     for (let letter of word){
       // console.log('letter', letter)
-      score+=scores[letter]
-
-
-      // for(let value in scores){
-      //   // console.log('value', scores[value])
-      //   // console.log('value1', value)
-      //   // 4. check each letter of the word, if it equals to scores[letter] increment score count 
-      //   // console.log('letter', letter)
-      //   if(letter === value){
-      //     console.log('scores[value]',scores[value])
-      //     score += scores[value]
-      //   }
-        // 5. if on last letter of word, push word and score to results, set score to 0
-        // if(letter === word[word.length - 1]){
-        //   results.push(score + ' ' + word);
-        //   score = 0
-        //   break;
-        // }        
-        
+      score+=scores[letter]           
+      if(hasBlank){
+        score=scores[letter]
+      }
     }  
     results.push(`${score} ${word}`);
   }
   return results
 }
 
-
-
 module.exports = {
   getWordsFromGivenLetters,
   removeWordsWithDuplicateLetters,
   calculateScore,
   replaceBlanks,
+  getWordsFromGivenArray,
 }
 

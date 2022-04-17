@@ -1,0 +1,70 @@
+input: NO
+output: [
+  '2 NO',
+  '2 ON'
+]
+// 1. Takes a dictionary and string of tiles
+// 2. get all of scrabble words that can be made with tiles
+  // - for every word in the dictionary see if all of its letters are included in tiles
+// 3. for every scrabble word 
+  // - for every letter count the score
+
+// Why does this does not work with blank tiles 
+// 1. 
+
+
+input: N_
+
+output: 
+[
+  'NA',
+  'AN',
+  'EN',
+  'NE',
+  'NA',
+]
+
+
+Interview question: Scrabble solver
+
+This is a real 60-minute interview question at a tech company.
+
+Part 1
+
+Write code that:
+
+- Accepts a string (either as a command-line argument or as an argument to a function)
+- Prints out the words that can be made from those characters, along with their Scrabble scores, one word per line, in descending score order
+
+Example input and output:
+
+`$ python scrabble_cheater.py SPCQEIU  # Use any language you like.`
+`17 piques`
+`17 equips`
+`16 quips`
+`16 pique`
+`16 equip`
+`15 quip`
+`…`
+
+Resources:
+
+- Word list
+- Letter scores
+Part 2
+
+Extend the script to handle blank tiles. When reading the input, the character _ can be used as a wildcard — it can represent any letter.
+
+Wildcards do not count towards a word's score.
+
+1. Need to get all possible combination of each filled in blanks 
+
+2. i have a array of arrays of permutations the needs each of its strings to be compared to a dictionary and scored
+
+3. the array of arrays needs to be 1 array 
+
+4. then each string in this array can be used to calcualate its score 
+
+
+Notes: 4/13 
+Focus on smaller problems before thinking about end output.
