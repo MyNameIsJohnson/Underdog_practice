@@ -38,6 +38,9 @@ const removeWordsWithDuplicateLetters = (words) => {
 }
 
 const replaceBlanks = (stringOfTiles, scores) => {
+  if(!stringOfTiles.includes('_')){
+    return [stringOfTiles]
+  }
   let listOfStringOfTiles = []
   let letters = stringOfTiles.split('');
   for(let keys in scores){
@@ -60,41 +63,41 @@ const replaceBlanks = (stringOfTiles, scores) => {
   return results
 }
 
-const getWordsFromGivenLetters = (dictionary, stringOfTiles)=>{
+const getWordsFromGivenTileLetters = (dictionary, stringOfTiles)=>{
   // empty array allWordsFromGivenLetters
   let allWordsFromGivenLetters = [];
   for (let i = 0; i < dictionary.length; i++){  
     if(dictionary[i] === ''){
       continue;
     }
-    let letters = stringOfTiles.split('');
+    let tileLetters = stringOfTiles.split('');
     // assign word = dictionary[i]
-    let word = dictionary[i].split('');
+    let dictionaryWordLetters = dictionary[i].split('');
     // loop word 
     // how to spell word from letters      
-    if(word.length > letters.length){
+    if(dictionaryWordLetters.length > tileLetters.length){
       continue;
     }      
-    for(let j = 0; j < letters.length; j++){
-      if(word.includes(letters[j])){
-        word.splice(word.indexOf(letters[j]), 1)
+    for(let j = 0; j < tileLetters.length; j++){
+      if(dictionaryWordLetters.includes(tileLetters[j])){
+        dictionaryWordLetters.splice(dictionaryWordLetters.indexOf(tileLetters[j]), 1)
       }
     }
-    if(word.length === 0){
+    if(dictionaryWordLetters.length === 0){
       allWordsFromGivenLetters.push(dictionary[i])
     }      
   }  
   return allWordsFromGivenLetters
 }
 
-const getWordsFromGivenArray = (dictionary, arrayOfTiles) => {
+const getWordsFromGivenArray = (dictionary, arrayOfTileCombinations) => {
   let allWordsFromGivenArray = [];
-  for(let i = 0; i < arrayOfTiles.length; i++){
-    let tiles = getWordsFromGivenLetters(dictionary, arrayOfTiles[i])
-    if(tiles.length === 0){
+  for(let i = 0; i < arrayOfTileCombinations.length; i++){
+    let words = getWordsFromGivenTileLetters(dictionary, arrayOfTileCombinations[i])
+    if(words.length === 0){
       continue;
     }
-    allWordsFromGivenArray.push(tiles);
+    allWordsFromGivenArray.push(words);
   }
   return allWordsFromGivenArray.flat()
 }
@@ -105,12 +108,13 @@ const calculateScore = (dictionary, stringOfTiles, scores) => {
   let results = [];
   let scrabbleWords;
   let hasBlank = stringOfTiles.includes('_');
-  if(hasBlank){
-    let arrayOfTiles = replaceBlanks(stringOfTiles, scores);
-    scrabbleWords = getWordsFromGivenArray(dictionary, arrayOfTiles);
-  }else {
-    scrabbleWords = getWordsFromGivenLetters(dictionary, stringOfTiles);  
-  }
+  // if(hasBlank){
+  let arrayOfTileCombinations = replaceBlanks(stringOfTiles, scores);
+  scrabbleWords = getWordsFromGivenArray(dictionary, arrayOfTileCombinations);
+  // }else {
+  //   scrabbleWords = getWordsFromGivenTileLetters(dictionary, stringOfTiles);  
+  // }
+
   for (let word of scrabbleWords){
     let score = 0;
     word = word.toLowerCase()
@@ -128,7 +132,7 @@ const calculateScore = (dictionary, stringOfTiles, scores) => {
 }
 
 module.exports = {
-  getWordsFromGivenLetters,
+  getWordsFromGivenTileLetters,
   removeWordsWithDuplicateLetters,
   calculateScore,
   replaceBlanks,

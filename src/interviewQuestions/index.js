@@ -39,6 +39,6 @@ scores = {
   "z": 10
 } 
 // console.log(getWordsFromGivenLetters(textByLine, 'SPCQEIU'))
-console.log(calculateScore(textByLine,'SPCQEIU', scores))
+console.log(calculateScore(textByLine,'N_', scores))
 // console.log(replaceBlanks("N_", scores))
 // console.log('getWordsFromGivenArray',getWordsFromGivenArray(textByLine, replaceBlanks("N_", scores)));

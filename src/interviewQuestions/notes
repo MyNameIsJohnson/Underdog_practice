@@ -65,6 +65,30 @@ Wildcards do not count towards a word's score.
 
 4. then each string in this array can be used to calcualate its score 
 
-
 Notes: 4/13 
 Focus on smaller problems before thinking about end output.
+
+list possible outputs, write plan, write code, if doesnt work as expected console logs
+
+4/19:
+Score and output is incorrect
+Why:  
+  1.they are not sorted in descented order and, 
+      output is not one word per line
+  2.blanks are not to be included with score
+    -> '4 ny' 
+
+
+    stringOfTiles: 'N_'
+    word:          'NY'
+    output: ->     '1 NY'
+
+
+    stringOfTiles: 'NY'
+    word:          'NY'
+    output:        '5 NY'
+
+
+    stringOfTiles: 'NO_'
+    word:          'WON'
+    output:        '2 WON'
