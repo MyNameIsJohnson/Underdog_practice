@@ -39,20 +39,22 @@ const getAllWordsWithoutLettersFromGivenString = (dictionary, string) => {
 const charDoesNotRepeats = (word) => {
   // assign a new Set of word to wordAsNewSet
   let wordAsNewSet = new Set(word);
-  console.log(word, word.length, wordAsNewSet.size, wordAsNewSet)
+  //  Uncomment the console log below to see the returned data
+  // console.log(word, word.length, wordAsNewSet.size, wordAsNewSet)
+
   // return the size of wordAsNewSet equals to word length
   return wordAsNewSet.size === word.length
 }
 
-// Now that we have a function that tells us whether the word has duplicates or not, we can pass that function into a function that filters out all the duplicate lettered words.
+// Now that we have a function that tells us whether the word has duplicates or not, we can pass that function into a function that filters out all the duplicate lettered words. 
+// What to expect: We want to take in the words and add a filter of charDoesNotRepeat, that helps us by only giving us back words that are true.
 
 const removeWordsWithDuplicateLetters = (words) => {
-  // We can return directly the words with filered charDoesNotRepeat.  
+  // We can return directly the words with the filered charDoesNotRepeat function. 
   return words.filter(charDoesNotRepeats)
 }
 
+console.log('getAllWordsWithoutLettersFromGivenString', getAllWordsWithoutLettersFromGivenString(textByLine, 'AEIOSHRTN'));
+
 console.log('removeWordsWithDuplicateLetters', removeWordsWithDuplicateLetters(getAllWordsWithoutLettersFromGivenString(textByLine, 'AEIOSHRTN')));
 
-// console.log('charDoesNotRepeats', charDoesNotRepeats(getAllWordsWithoutLettersFromGivenString(textByLine, 'AEIOSHRTN')))
-
-console.log(charDoesNotRepeats('Hello'))

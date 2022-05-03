@@ -5,9 +5,10 @@ var textByLine = text.split('\n');
 const {
   getWordsFromGivenLetters,
   removeWordsWithDuplicateLetters,
-  calculateScore,
   replaceBlanks,
   getWordsFromGivenArray,
+  getWordScore,
+  calculateScoresForTiles,
 } = require('./scrabble');
 
 scores = {
@@ -38,7 +39,11 @@ scores = {
   "y": 4,
   "z": 10
 } 
+
 // console.log(getWordsFromGivenLetters(textByLine, 'SPCQEIU'))
-console.log(calculateScore(textByLine,'N_', scores))
+// console.log(calculateScoresForTiles(textByLine,'N_', scores));
+console.log(getWordScore('NY', 'N_', scores))
+console.log(getWordScore('NY', 'NY', scores))
+console.log(getWordScore('WON', 'NO_', scores))
 // console.log(replaceBlanks("N_", scores))
 // console.log('getWordsFromGivenArray',getWordsFromGivenArray(textByLine, replaceBlanks("N_", scores)));

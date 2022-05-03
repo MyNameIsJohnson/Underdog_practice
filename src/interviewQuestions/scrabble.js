@@ -102,30 +102,34 @@ const getWordsFromGivenArray = (dictionary, arrayOfTileCombinations) => {
   return allWordsFromGivenArray.flat()
 }
 
+// 1. This takes in a word and outputs the words scored
+
+
+const getWordScore = (word, stringOfTiles, scores) => {
+  let score = 0;
+  let hasBlank = word.includes('_');
+
+  word = word.toLowerCase()
+  // 3. loop through score object
+  for (let letter of word){
+    // console.log('letter', letter)
+    score+=scores[letter]           
+    if(hasBlank){
+      score=scores[letter]
+    }
+  }  
+  return score;
+}
+
 // calculate the points for eash word returned from removeWordsWithDuplicateLetters(getWordsFromGivenLetters(textByLine, 'SPCQEIU')))
-const calculateScore = (dictionary, stringOfTiles, scores) => {
-  // 1. assign empty results array for collecting word and score, and a  score to keep count
+const calculateScoresForTiles = (dictionary, stringOfTiles, scores) => {
   let results = [];
-  let scrabbleWords;
-  let hasBlank = stringOfTiles.includes('_');
-  // if(hasBlank){
   let arrayOfTileCombinations = replaceBlanks(stringOfTiles, scores);
-  scrabbleWords = getWordsFromGivenArray(dictionary, arrayOfTileCombinations);
-  // }else {
-  //   scrabbleWords = getWordsFromGivenTileLetters(dictionary, stringOfTiles);  
-  // }
+  let scrabbleWords = getWordsFromGivenArray(dictionary, arrayOfTileCombinations);
 
   for (let word of scrabbleWords){
-    let score = 0;
-    word = word.toLowerCase()
-    // 3. loop through score object
-    for (let letter of word){
-      // console.log('letter', letter)
-      score+=scores[letter]           
-      if(hasBlank){
-        score=scores[letter]
-      }
-    }  
+    let score = getWordScore(word, stringOfTiles, scores);
+
     results.push(`${score} ${word}`);
   }
   return results
@@ -134,8 +138,9 @@ const calculateScore = (dictionary, stringOfTiles, scores) => {
 module.exports = {
   getWordsFromGivenTileLetters,
   removeWordsWithDuplicateLetters,
-  calculateScore,
+  calculateScoresForTiles,
   replaceBlanks,
   getWordsFromGivenArray,
+  getWordScore,
 }
 
