@@ -41,8 +41,8 @@ scores = {
 } 
 
 // console.log(getWordsFromGivenLetters(textByLine, 'SPCQEIU'))
-// console.log(calculateScoresForTiles(textByLine,'N_', scores));
-console.log(getWordScore('NY', 'N_', scores))
+console.log(calculateScoresForTiles(textByLine,'N_', scores));
+console.log(replaceBlanks('NO', scores))
 console.log(getWordScore('NY', 'NY', scores))
 console.log(getWordScore('WON', 'NO_', scores))
 // console.log(replaceBlanks("N_", scores))

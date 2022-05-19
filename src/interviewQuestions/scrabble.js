@@ -107,13 +107,16 @@ const getWordsFromGivenArray = (dictionary, arrayOfTileCombinations) => {
 
 const getWordScore = (word, stringOfTiles, scores) => {
   let score = 0;
-  let hasBlank = word.includes('_');
+  let hasBlank = stringOfTiles.includes('_');
 
   word = word.toLowerCase()
   // 3. loop through score object
   for (let letter of word){
     // console.log('letter', letter)
-    score+=scores[letter]           
+    score+=scores[letter]  
+
+        // check if letter is in stringofTiles instead
+          // 
     if(hasBlank){
       score=scores[letter]
     }

@@ -89,3 +89,7 @@ output is not one word per line
     stringOfTiles: 'NO_'
     word:          'WON'
     output:        2
+
+a. is there blank
+b. if there is no valid word with repeated blanks, do nothing
+c. if there is, take the score from only

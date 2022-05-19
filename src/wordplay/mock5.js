@@ -54,7 +54,53 @@ const removeWordsWithDuplicateLetters = (words) => {
   return words.filter(charDoesNotRepeats)
 }
 
-console.log('getAllWordsWithoutLettersFromGivenString', getAllWordsWithoutLettersFromGivenString(textByLine, 'AEIOSHRTN'));
+// What is the longest word that has no repeating letters?
 
-console.log('removeWordsWithDuplicateLetters', removeWordsWithDuplicateLetters(getAllWordsWithoutLettersFromGivenString(textByLine, 'AEIOSHRTN')));
+// Questions: 1. What type of data do we want the longest word returned to be? Array or string? 
 
+// We need to take in all the words returned to removeWordsWithDuplicateLetters. With that list of words we can then check each word length, by setting the first word in the list as the longest. Then iterate through the rest of the words and compare its length to the longest word. If the word is longer then the longest word, then that word becomes the longest word. 
+
+// Edge case: How do we want to handle ties?
+ 
+// INPUT: ['BLUDY', 'BUCK', 'BUD','BUG', 'BULGY','BULK', 'BULKY','BUM', 'BUMF', 'BUMP', 'BUMPY', 'BUY','BY', 'CLUB', 'CLUMP', CLUMPY', 'DUMBLY', ... ]
+// OUTPUT: 'CLUMPY' => string
+// OUTPUT: ['CLUMPY', 'DUMBLY', ...] => array handled ties
+
+// Create a function getLongestWordWithoutRepeatedLetters that takes words as a parameter. 
+const getLongestWordWithoutRepeatedLetters = (wordsList) => {
+  // Assign words to equal removeWordsWithDuplicateLetters(words). 
+  const words = removeWordsWithDuplicateLetters(wordsList);
+  // Declare longestWordWithoutRepeatedLetters equal to words[0]. 
+  let longestWordWithoutRepeatedLetters = words[0];
+  // Declare empty array to store words of same length
+  let listOfLongestWordsWithoutRepeatedLetters = [];
+  // For loop through words length, iterate words at index and incremente. 
+  for(let i = 0; i < words.length; i++){
+    // Declare word equal to words[i]
+    let word = words[i];
+    // if word length is greater then longestWordWithoutRepeatedLetters length
+    if(word.length > longestWordWithoutRepeatedLetters.length){
+      // Clear listOfLongestWordsWithoutRepeatedLetters
+      listOfLongestWordsWithoutRepeatedLetters = []
+      // push word to listOfLongestWordsWithoutRepeatedLetters
+      listOfLongestWordsWithoutRepeatedLetters.push(word)
+      // longestWordWithoutRepeatedLetters equals word
+      longestWordWithoutRepeatedLetters = word;
+      // 
+    }
+    // Handle ties
+    if(word.length === longestWordWithoutRepeatedLetters.length){
+      listOfLongestWordsWithoutRepeatedLetters.push(word)
+    }
+  }
+  // return longestWordWithoutRepeatedLetters
+  return listOfLongestWordsWithoutRepeatedLetters
+}
+
+
+
+// console.log('getAllWordsWithoutLettersFromGivenString', getAllWordsWithoutLettersFromGivenString(textByLine, 'AEIOSHRTN'));
+
+// console.log('removeWordsWithDuplicateLetters', removeWordsWithDuplicateLetters(getAllWordsWithoutLettersFromGivenString(textByLine, 'AEIOSHRTN')));
+
+console.log('getLongestWordWithoutRepeatedLetters', getLongestWordWithoutRepeatedLetters(removeWordsWithDuplicateLetters(getAllWordsWithoutLettersFromGivenString(textByLine, 'AEIOSHRTN'))));
