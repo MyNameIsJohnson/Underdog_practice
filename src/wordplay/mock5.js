@@ -74,6 +74,8 @@ const getLongestWordWithoutRepeatedLetters = (wordsList) => {
   let longestWordWithoutRepeatedLetters = words[0];
   // Declare empty array to store words of same length
   let listOfLongestWordsWithoutRepeatedLetters = [];
+  // Declare empty string for single longest word
+  let longestWord;
   // For loop through words length, iterate words at index and incremente. 
   for(let i = 0; i < words.length; i++){
     // Declare word equal to words[i]
@@ -81,26 +83,30 @@ const getLongestWordWithoutRepeatedLetters = (wordsList) => {
     // if word length is greater then longestWordWithoutRepeatedLetters length
     if(word.length > longestWordWithoutRepeatedLetters.length){
       // Clear listOfLongestWordsWithoutRepeatedLetters
-      listOfLongestWordsWithoutRepeatedLetters = []
+      listOfLongestWordsWithoutRepeatedLetters = [];
+      // assign word to longestWord
+      longestWord += word;
       // push word to listOfLongestWordsWithoutRepeatedLetters
-      listOfLongestWordsWithoutRepeatedLetters.push(word)
+      listOfLongestWordsWithoutRepeatedLetters.push(word);
       // longestWordWithoutRepeatedLetters equals word
       longestWordWithoutRepeatedLetters = word;
-      // 
+   
     }
     // Handle ties
     if(word.length === longestWordWithoutRepeatedLetters.length){
-      listOfLongestWordsWithoutRepeatedLetters.push(word)
+      listOfLongestWordsWithoutRepeatedLetters.push(word);
+      longestWord += word + ', '
     }
   }
-  // return longestWordWithoutRepeatedLetters
   return listOfLongestWordsWithoutRepeatedLetters
+  // return longestWord
 }
-
-
 
 // console.log('getAllWordsWithoutLettersFromGivenString', getAllWordsWithoutLettersFromGivenString(textByLine, 'AEIOSHRTN'));
 
 // console.log('removeWordsWithDuplicateLetters', removeWordsWithDuplicateLetters(getAllWordsWithoutLettersFromGivenString(textByLine, 'AEIOSHRTN')));
 
+let words = ['BLUDY', 'BUCK', 'BUD','BUG']
 console.log('getLongestWordWithoutRepeatedLetters', getLongestWordWithoutRepeatedLetters(removeWordsWithDuplicateLetters(getAllWordsWithoutLettersFromGivenString(textByLine, 'AEIOSHRTN'))));
+
+console.log('getLongestWordWithoutRepeatedLetters', getLongestWordWithoutRepeatedLetters(removeWordsWithDuplicateLetters(getAllWordsWithoutLettersFromGivenString(words, 'AEIOSHRTN'))));

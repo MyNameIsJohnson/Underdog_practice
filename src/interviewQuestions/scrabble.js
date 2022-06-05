@@ -12,6 +12,10 @@
 // `15 quip`
 // `…`
 
+// Extend the script to handle blank tiles. When reading the input, the character \_ can be used as a wildcard — it can represent any letter.
+
+// Wildcards do not count towards a word's score.
+
 var charDoesNotRepeats = function(str) {
   // for (var i=0; i<str.length; i++) {
   //   if ( str.indexOf(str[i]) !== str.lastIndexOf(str[i]) ) {
@@ -104,23 +108,50 @@ const getWordsFromGivenArray = (dictionary, arrayOfTileCombinations) => {
 
 // 1. This takes in a word and outputs the words scored
 
-
 const getWordScore = (word, stringOfTiles, scores) => {
   let score = 0;
   let hasBlank = stringOfTiles.includes('_');
 
   word = word.toLowerCase()
-  // 3. loop through score object
-  for (let letter of word){
-    // console.log('letter', letter)
-    score+=scores[letter]  
+  stringOfTiles = stringOfTiles.toLowerCase()
 
-        // check if letter is in stringofTiles instead
-          // 
-    if(hasBlank){
-      score=scores[letter]
-    }
-  }  
+  let splitStringOfTiles = stringOfTiles.split('');
+  // console.log('split', splitStringOfTiles)
+  splitStringOfTiles.splice(stringOfTiles.indexOf('_'), 1);
+  // console.log('after splice', splitStringOfTiles)
+
+    if (!hasBlank){
+      for (let letter of word){
+        console.log('no blanks -----')
+        // console.log('letter', letter)
+        // console.log('score letter', scores[letter])
+        score += scores[letter]   
+        console.log('score', score)
+      }
+    } 
+
+    if(hasBlank) {
+      console.log(' BLANKS -----')
+      // Account for 'AA', or repeated 
+      console.log('WORD', word)
+
+      word = new Set(word);
+      for (let letter of word){
+        console.log('word', word)
+        console.log('letter', letter)
+        for (let char of splitStringOfTiles){
+          console.log('Char', char)
+          // console.log('score char', scores[char])
+          
+          if(letter === char){
+            score += scores[char]   
+            console.log('score', score);
+            break;
+          }
+        }
+      }
+    }  
+  
   return score;
 }
 
@@ -132,6 +163,7 @@ const calculateScoresForTiles = (dictionary, stringOfTiles, scores) => {
 
   for (let word of scrabbleWords){
     let score = getWordScore(word, stringOfTiles, scores);
+    // console.log(word)
 
     results.push(`${score} ${word}`);
   }
