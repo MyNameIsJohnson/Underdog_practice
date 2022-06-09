@@ -5,8 +5,9 @@
 
 // CREATE
 // - First, create an empty array called fruitsArr
+let fruitArr = [];
 // - Now, append the array with 5 fruits (ex: "apple", "orange", etc)
-let fruitsArr = ['apple', 'orange', 'pineapple', 'strawberry', 'banana'];
+fruitArr.push('apple', 'orange', 'pineapple', 'strawberry', 'banana');
 
 // READ: now that we have our fruits array, we want to be able to read from it
 // to learn about what's in it
@@ -17,18 +18,23 @@ let fruitsArr = ['apple', 'orange', 'pineapple', 'strawberry', 'banana'];
 // console.log(fruitsArr[fruitsArr.length - 1]);
 
 // - Iterate over the array with a for loop and print each item
+// for (let item in fruitArr){
+//   console.log(fruitArr[item])
+// }
 
 // UPDATE: you can update an array by adding items to the array or updating an
 // existing item in the array
 
 // - Now, change the first item in the array to be "mango"
+fruitArr[0] = 'mango'
 // - Now, append the fruit "calamansi" to the fruits array (appending something
 //   is a form of updating our existing array)
-
+fruitArr.push('calamansi')
 
 // DELETE: you can also delete things from an array
 // - Delete the last item in the array
-
+fruitArr.pop()
+console.log(fruitArr)
 
 // --------------------------------------------------------------------------
 // PROBLEM SET 2: DICTIONARIES (aka javascript objects)

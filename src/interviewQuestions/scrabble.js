@@ -115,10 +115,10 @@ const getWordScore = (word, stringOfTiles, scores) => {
   word = word.toLowerCase()
   stringOfTiles = stringOfTiles.toLowerCase()
 
-  let splitStringOfTiles = stringOfTiles.split('');
-  // console.log('split', splitStringOfTiles)
-  splitStringOfTiles.splice(stringOfTiles.indexOf('_'), 1);
-  // console.log('after splice', splitStringOfTiles)
+  let charactersInTiles = stringOfTiles.split('');
+  // console.log('split', charactersInTiles)
+  charactersInTiles.splice(stringOfTiles.indexOf('_'), 1);
+  // console.log('after splice', charactersInTiles)
 
     if (!hasBlank){
       for (let letter of word){
@@ -131,21 +131,21 @@ const getWordScore = (word, stringOfTiles, scores) => {
     } 
 
     if(hasBlank) {
-      console.log(' BLANKS -----')
+      // console.log(' BLANKS -----')
       // Account for 'AA', or repeated 
-      console.log('WORD', word)
+      // console.log('WORD', word)
 
       word = new Set(word);
       for (let letter of word){
-        console.log('word', word)
-        console.log('letter', letter)
-        for (let char of splitStringOfTiles){
-          console.log('Char', char)
-          // console.log('score char', scores[char])
+        // console.log('word', word)
+        // console.log('letter', letter)
+        for (let character of charactersInTiles){
+          // console.log('Char', character)
+          // console.log('score character', scores[character])
           
-          if(letter === char){
-            score += scores[char]   
-            console.log('score', score);
+          if(letter === character){
+            score += scores[character]   
+            // console.log('score', score);
             break;
           }
         }
