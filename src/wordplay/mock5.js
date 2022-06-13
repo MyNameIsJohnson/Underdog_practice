@@ -13,17 +13,17 @@ const getAllWordsWithoutLettersFromGivenString = (dictionary, string) => {
   // assign letters to equal the split string 
   let letters = string.split('');
   // loop through the dictionary length in order to look at individual word 
-  for(let i = 0; i < dictionary.length; i++){
+  for (let i = 0; i < dictionary.length; i++){
     // assign word to equal dictionary at index
     let word = dictionary[i];
     // create inner loop of word length in order to look at each letter in the word
-    for(let j = 0; j < word.length; j++){
+    for ( let j = 0; j < word.length; j++){
       // if letters include word at index, break from inner loop. That is because if that word has the letter, this isn't the word we want 
-      if(letters.includes(word[j])){
+      if (letters.includes(word[j])){
         break;
       }
       // if inner loop index is equal to last letter of word, push that word to empty array of all words without given letters. So by the time we have checked all the letters in the word and the loop didn't have to break, that means the word didn't include the letters searching for. Therefore, that is the word we want to keep.
-      if(j === word.length -1){
+      if (j === word.length - 1){
         allWordsWithoutLettersFromGivenString.push(word);
       }
     }
@@ -74,6 +74,8 @@ const getLongestWordWithoutRepeatedLetters = (wordsList) => {
   let longestWordWithoutRepeatedLetters = words[0];
   // Declare empty array to store words of same length
   let listOfLongestWordsWithoutRepeatedLetters = [];
+  // Declare empty string for single longest word
+  let longestWord;
   // For loop through words length, iterate words at index and incremente. 
   for(let i = 0; i < words.length; i++){
     // Declare word equal to words[i]
@@ -81,26 +83,30 @@ const getLongestWordWithoutRepeatedLetters = (wordsList) => {
     // if word length is greater then longestWordWithoutRepeatedLetters length
     if(word.length > longestWordWithoutRepeatedLetters.length){
       // Clear listOfLongestWordsWithoutRepeatedLetters
-      listOfLongestWordsWithoutRepeatedLetters = []
+      listOfLongestWordsWithoutRepeatedLetters = [];
+      // assign word to longestWord
+      longestWord += word;
       // push word to listOfLongestWordsWithoutRepeatedLetters
-      listOfLongestWordsWithoutRepeatedLetters.push(word)
+      listOfLongestWordsWithoutRepeatedLetters.push(word);
       // longestWordWithoutRepeatedLetters equals word
       longestWordWithoutRepeatedLetters = word;
-      // 
+   
     }
     // Handle ties
     if(word.length === longestWordWithoutRepeatedLetters.length){
-      listOfLongestWordsWithoutRepeatedLetters.push(word)
+      listOfLongestWordsWithoutRepeatedLetters.push(word);
+      longestWord += word + ', '
     }
   }
-  // return longestWordWithoutRepeatedLetters
   return listOfLongestWordsWithoutRepeatedLetters
+  // return longestWord
 }
-
-
 
 // console.log('getAllWordsWithoutLettersFromGivenString', getAllWordsWithoutLettersFromGivenString(textByLine, 'AEIOSHRTN'));
 
 // console.log('removeWordsWithDuplicateLetters', removeWordsWithDuplicateLetters(getAllWordsWithoutLettersFromGivenString(textByLine, 'AEIOSHRTN')));
 
+let words = ['BLUDY', 'BUCK', 'BUD','BUG']
 console.log('getLongestWordWithoutRepeatedLetters', getLongestWordWithoutRepeatedLetters(removeWordsWithDuplicateLetters(getAllWordsWithoutLettersFromGivenString(textByLine, 'AEIOSHRTN'))));
+
+// console.log('getLongestWordWithoutRepeatedLetters', getLongestWordWithoutRepeatedLetters(removeWordsWithDuplicateLetters(getAllWordsWithoutLettersFromGivenString(words, 'AEIOSHRTN'))));
