@@ -73,6 +73,7 @@ const getWordsFromGivenTileLetters = (dictionary, stringOfTiles)=>{
     let tileLetters = stringOfTiles.split('');
     // assign word = dictionary[i]
     let dictionaryWordLetters = dictionary[i].split('');
+    // console.log(dictionaryWordLetters.includes("\r"))
     // loop word 
     // how to spell word from letters      
     if(dictionaryWordLetters.length > tileLetters.length){

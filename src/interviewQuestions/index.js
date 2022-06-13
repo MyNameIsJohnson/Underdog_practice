@@ -1,9 +1,10 @@
 var fs = require('fs');
 var text = fs.readFileSync("./sowpods.txt", 'utf-8');
-var textByLine = text.split('\n');
+var textByLine = text.split('\r\n');
+console.log(textByLine)
 
 const {
-  getWordsFromGivenLetters,
+  getWordsFromGivenTileLetters,
   removeWordsWithDuplicateLetters,
   replaceBlanks,
   getWordsFromGivenArray,
@@ -40,10 +41,10 @@ scores = {
   "z": 10
 } 
 
-// console.log(getWordsFromGivenLetters(textByLine, 'SPCQEIU'))
+console.log(getWordsFromGivenTileLetters(textByLine, 'SPCQEIU'))
 console.log(calculateScoresForTiles(textByLine,'N_', scores));
-console.log(replaceBlanks('NO', scores))
-console.log(getWordScore('NY', 'NY', scores))
-console.log(getWordScore('WON', 'NO_', scores))
+// console.log(replaceBlanks('N_', scores))
+// console.log(getWordScore('NY', 'NY', scores))
+// console.log(getWordScore('WON', 'NO_', scores))
 // console.log(replaceBlanks("N_", scores))
 // console.log('getWordsFromGivenArray',getWordsFromGivenArray(textByLine, replaceBlanks("N_", scores)));
