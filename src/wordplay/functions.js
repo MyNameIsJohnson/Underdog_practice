@@ -86,7 +86,7 @@ const getLetterCount = (word, character) => {
   return count;
 };
 
-console.log(getLetterCount("However", "E"));
+// console.log(getLetterCount("However", "E"));
 
 // [ ] Write a function that takes a string `word` as the first argument, a string `letter` as the second argument, and returns a count of how many times `letter` occurs in `word`.
 
@@ -94,7 +94,7 @@ console.log(getLetterCount("However", "E"));
 
 const getAllLettersCount = (phrase) => {
   let countedCharacters = {};
-
+  phrase = phrase.replaceAll(" ", "");
   for (let letter of phrase) {
     if (countedCharacters[letter] === undefined) {
       countedCharacters[letter] = 1;
@@ -104,4 +104,4 @@ const getAllLettersCount = (phrase) => {
   }
   return countedCharacters;
 };
-console.log(getAllLettersCount("How many letters"));
+console.log(getAllLettersCount("Count each letter in this phrase"));

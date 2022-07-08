@@ -1,8 +1,9 @@
-var fs = require('fs');
-var text = fs.readFileSync("./sowpods.txt", 'utf-8');
-var textByLine = text.split('\n')
+var fs = require("fs");
+var text = fs.readFileSync("./sowpods.txt", "utf-8");
+var textByLine = text.split("\n");
 
-const { getAllWordsWithUU,
+const {
+  getAllWordsWithUU,
   getAllWordsWithXYZ,
   getAllWordsWithQButNotU,
   getAllWordsWithCAT,
@@ -19,7 +20,8 @@ const { getAllWordsWithUU,
   getLongestWordWithoutVowels,
   leastCommonLetter,
   longestPalindrome,
-  getWordsWithoutConsecutiveLetters, } = require('./wordplay');
+  getWordsWithoutConsecutiveLetters,
+} = require("./wordplay");
 
 // console.log("getAllWordsWithUU", getAllWordsWithUU(textByLine));
 // console.log("getAllWordsWithXYZ", getAllWordsWithXYZ(textByLine));
@@ -31,15 +33,17 @@ const { getAllWordsWithUU,
 // console.log("noVowels",getAllWordsWithNoVowels(textByLine));
 // console.log("noVowels1",getAllWordsWithNoVowels1(textByLine));
 // console.log("hasVowels",getWordsWithVowels(textByLine));
-// console.log("hasVowelsInAlphabeticalOrder",getWordsWithVowelsInAlphabeticalOrder(textByLine));
+console.log(
+  "hasVowelsInAlphabeticalOrder",
+  getWordsWithVowelsInAlphabeticalOrder(textByLine)
+);
 // console.log('Number of Words with substring "TYPE": ', getSubstringTYPE(textByLine));
 // console.log('Words With "GHTLY": ', getWordsWithGHTLY(textByLine));
 // console.log('Using for loop for shortest word with vowels', getShortestWordWithVowels(textByLine));
 // console.log('longestWordWithoutVowels: ', getLongestWordWithoutVowels(textByLine));
-console.log('The least Common Letter out of "Q", "X" and "Y", is: ', leastCommonLetter(text));
+// console.log('The least Common Letter out of "Q", "X" and "Y", is: ', leastCommonLetter(text));
 // console.log('longest Palindrome: ', longestPalindrome(textByLine));
 // console.log('Words without consecutive letters: ', getWordsWithoutConsecutiveLetters(textByLine));
-
 
 // const {findAllWordsFromGivenLetters} = require('./mock.js')
 // // console.log('findAllWordsFromGivenLetters', findAllWordsFromGivenLetters(textByLine, 'ABCD'))
