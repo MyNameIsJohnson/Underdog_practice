@@ -152,13 +152,13 @@ const getAllCompoundWords = (dictionary) => {
   let allCompoundWords = [];
   for (let i = 0; i < dictionary.length; i++) {
     let word = dictionary[i];
-    for (let j = 0; j < word.length; j++) {
-      // console.log("word", word);
-      // console.log("slice", word.slice(0, j + 1));
-      if (word === word.slice(0, j + 1) && ) {
-        allCompoundWords.push(word);
-      }
+    // for (let j = 0; j < word.length; j++) {
+    // console.log("word", word);
+    // console.log("slice", word.slice(0, j + 1));
+    if (dictionary.includes(word)) {
+      allCompoundWords.push(word);
     }
+    // }
   }
   return allCompoundWords;
 };
