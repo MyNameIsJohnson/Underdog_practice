@@ -1,5 +1,4 @@
 let fs = require("fs");
-const { workerData } = require("worker_threads");
 let sowpods = fs.readFileSync("./sowpods.txt", "utf-8").split("\r\n");
 // Bigger Wordplay Questions
 
@@ -58,7 +57,7 @@ const getWordsWithoutRepeatedCharacters = (wordList) => {
   return wordsWithoutRepeatedCharacters;
 };
 
-console.log(getWordsWithoutRepeatedCharacters(sowpods));
+// console.log(getWordsWithoutRepeatedCharacters(sowpods));
 
 // ___FEEDBACK___ Ask whether the question is asking about consecutive repeated characters or multiple instants of the same character
 
@@ -167,12 +166,120 @@ const getAllWordsWithDuplicateLetters = (wordList) => {
   return wordList;
 };
 
-console.log(getAllWordsWithDuplicateLetters(sowpods));
+// console.log(getAllWordsWithDuplicateLetters(sowpods));
 
 // [ ] Write a function that takes a string `availableLetters` as an argument and returns an array of all of the words that can be made from only those letters. Letters can be re-used as many times as needed and can appear in any order. Not all of the letters in `availableLetters` have to be used.
 
+const getWordsFromGivenLetters = (dictionary, availableLetters) => {
+  const wordsFromGivenLetters = [];
+  // split availableLetters
+  let letters = availableLetters.split(""); // loop through dictionary
+  // if word doesn't include availableLetters break out loop
+  // push word into wordsFromGivenLetters
+  for (let i = 0; i < dictionary.length; i++) {
+    let word = new Set(dictionary[i]);
+    let count = 0;
+    let newWord = Array.from(word);
+
+    // check each letter of word
+    for (let j = 0; j < newWord.length; j++) {
+      if (!letters.includes(newWord[j])) {
+        count = 1;
+      }
+    }
+    if (count === 0) {
+      wordsFromGivenLetters.push(dictionary[i]);
+    }
+  }
+  return wordsFromGivenLetters;
+};
+
+// try using regex to solve
+
+// console.log(
+//   "getWordsFromGivenLetters",
+//   getWordsFromGivenLetters(sowpods, "JORDEN")
+// );
+
 // [ ] What are all of the compound words? These are words made up of 2 smaller words. For example, “SNOWMAN” is a compound word made from “SNOW” and “MAN”, and “BEACHBALL” is a compound word made from “BEACH” and “BALL”.
+
+// loop through dictionary
+// checkout if word is found in other words
+// add to wordsFoundInOtherWords
+
+// Inner loop of wordsFoundInOtherWords
+// if dictionary word contains wordsFoundInOtherWords
+// add dictionary word to allCompoundWords
+
+// return allCompoundWords
+
+const list = [
+  "BALL",
+  "BEACH",
+  "BEACHBALL",
+  "MAN",
+  "KEEPER",
+  "SNOW",
+  "SNOWMAN",
+  "RAN",
+  "RANDOM",
+  "ZOO",
+  "ZOOKEEPER",
+];
+
+const getPrefix = (dictionary) => {
+  let prefix = [];
+
+  for (let i = 0; i < dictionary.length; i++) {
+    let word = dictionary[i];
+
+    for (let j = i + 1; j < dictionary.length; j++) {
+      if (dictionary[j].startsWith(word)) {
+        prefix.push(word);
+      }
+    }
+  }
+  return prefix;
+};
+
+const getSuffix = (dictionary) => {
+  let suffix = [];
+
+  for (let i = 0; i < dictionary.length; i++) {
+    let word = dictionary[i];
+
+    for (let j = i + 1; j < dictionary.length; j++) {
+      if (dictionary[j].endsWith(word)) {
+        suffix.push(word);
+      }
+    }
+  }
+  return suffix;
+};
+
+const getAllCompoundWords = (dictionary) => {
+  let allCompoundWords = [];
+  let prefix = getPrefix(dictionary);
+  let suffix = getSuffix(dictionary);
+  for (let i = 0; i < dictionary.length; i++) {
+    let word = dictionary[i];
+    for (let j = 0; j < prefix.length; j++) {
+      for (let k = 0; k < suffix.length; k++) {
+        if (word === prefix[j].concat(suffix[k])) {
+          allCompoundWords.push(word);
+        }
+      }
+    }
+  }
+  return allCompoundWords;
+};
+
+console.log(getPrefix(list));
+console.log(getSuffix(list));
+console.log(getAllCompoundWords(list));
+
 // [ ] Finding alphabet chains:
 //     - First, what are all of the words that have a least one “A”, one “B”, one “C”, one “D”, one “E”, and one “F” in them, in any order?
 //         - For example, “FEEDBACK” is an answer to this question
+
 //     - Next, is “ABCDEF” the longest alphabet chain that can be found in a word, or is there a longer chain starting somewhere else in the alphabet? Find the longest chain.

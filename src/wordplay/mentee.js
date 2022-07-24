@@ -1,6 +1,6 @@
 const fs = require("fs");
 const words = fs.readFileSync("./sowpods.txt", "utf-8").split("\r\n");
-console.log(words);
+// console.log(words);
 
 // Write a function that takes a string word as the first argument, a string letter as the second argument, and returns a count of how many times letter occurs in word.
 
@@ -32,4 +32,28 @@ const getAllPrefix = (prefix, data) => {
   return allPrefix;
 };
 
-console.log(getAllPrefix("ATT", words));
+// console.log(getAllPrefix("ATT", words));
+
+function countingValleys(steps, path) {
+  // Write your code here
+  // for every string = u increment count
+  // for every string = d decrement count
+  // if count is > 0 hiker didn't go through a valley, if < 0 hiker went thtough a valley
+  let count = 0;
+  let valley = 0;
+  path = path.split("");
+  for (let i = 0; i < path.length; i++) {
+    if (path[i] === "U") {
+      count++;
+      if (count === 0) {
+        valley++;
+      }
+    } else {
+      count--;
+    }
+  }
+
+  return valley;
+}
+
+console.log(countingValleys(8, "UDDDUDUU"));
