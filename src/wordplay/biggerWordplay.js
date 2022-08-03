@@ -1,5 +1,6 @@
 let fs = require("fs");
-let sowpods = fs.readFileSync("./sowpods.txt", "utf-8").split("\r\n");
+let wordlist = fs.readFileSync("./sowpods.txt", "utf-8");
+let sowpods = wordlist.split("\r\n");
 // Bigger Wordplay Questions
 
 // The questions after this section are all real 60-minute interview questions from tech companies. Before you move on to those questions, we recommend confirming that you are comfortable independently breaking down, implementing, and debugging the questions below.
@@ -203,68 +204,101 @@ const getWordsFromGivenLetters = (dictionary, availableLetters) => {
 
 // [ ] What are all of the compound words? These are words made up of 2 smaller words. For example, “SNOWMAN” is a compound word made from “SNOW” and “MAN”, and “BEACHBALL” is a compound word made from “BEACH” and “BALL”.
 
-// loop through dictionary
-// checkout if word is found in other words
-// add to wordsFoundInOtherWords
-
-// Inner loop of wordsFoundInOtherWords
-// if dictionary word contains wordsFoundInOtherWords
-// add dictionary word to allCompoundWords
-
-// return allCompoundWords
-
-const list = [
-  "BALL",
+let dict = new Set([
   "BEACH",
-  "BEACHBALL",
   "MAN",
   "KEEPER",
   "SNOW",
   "SNOWMAN",
   "RAN",
-  "RANDOM",
   "ZOO",
   "ZOOKEEPER",
-];
+  "BALL",
+]);
+let memo = new Object();
 
-const getPrefix = (dictionary) => {
-  let prefix = [];
+function backtracking(depth, s, wordSet, sub) {
+  let n = s.length;
+  // accept
+  if (depth === n) {
+    return true;
+  }
 
-  for (let i = 0; i < dictionary.length; i++) {
-    let word = dictionary[i];
+  // memoization
+  if (memo[sub] !== undefined) {
+    // memo
+    console.log("undef");
+    return memo[sub];
+  }
 
-    for (let j = i + 1; j < dictionary.length; j++) {
-      if (dictionary[j].startsWith(word)) {
-        prefix.push(word);
+  for (let i = depth; i < n; i++) {
+    let str = s.substring(depth, i + 1); // substring[depth, i]
+    console.log(str);
+
+    if (wordSet.has(str)) {
+      if (backtracking(i + 1, s, wordSet, str)) {
+        memo[str] = true; // memo
+        return true;
       }
     }
   }
-  return prefix;
-};
 
-const getSuffix = (dictionary) => {
-  let suffix = [];
+  memo[sub] = false; // memo
+  return false;
+}
 
-  for (let i = 0; i < dictionary.length; i++) {
-    let word = dictionary[i];
+const getWord = (list) => {
+  let validCompoundWords = [];
 
-    for (let j = i + 1; j < dictionary.length; j++) {
-      if (dictionary[j].endsWith(word)) {
-        suffix.push(word);
-      }
+  for (let word of list) {
+    if (backtracking(0, word, list, word[0])) {
+      validCompoundWords.push(word);
     }
   }
-  return suffix;
+  return validCompoundWords;
 };
 
-const getAllCompoundWords = (dictionary) => {
+// INPUT: [
+//   'BEACH',   'MAN',
+//   'KEEPER',  'SNOW',
+//   'SNOWMAN', 'RAN',
+//   'BEACHBALL', 'ZOO',
+//   'ZOOKEEPER', 'BALL'
+// ]
+// output: ['SNOWMAN', 'BEACHBALL', 'ZOOKEEPER]
+
+// const getSuffix = (dictionary) => {
+//   console.log("getting suffix");
+
+//   let suffix = [];
+
+//   for (let i = 0; i < dictionary.length; i++) {
+//     let word = dictionary[i];
+
+//     for (let j = i + 1; j < dictionary.length; j++) {
+//       if (dictionary[j].endsWith(word)) {
+//         suffix.push(word);
+//       }
+//     }
+//   }
+//   return suffix;
+// };
+
+const getAllCompoundWords = (dictionary, s) => {
+  console.log("getting all compound words");
+
   let allCompoundWords = [];
   let prefix = getPrefix(dictionary);
   let suffix = getSuffix(dictionary);
   for (let i = 0; i < dictionary.length; i++) {
+    console.log("=====first loop");
     let word = dictionary[i];
     for (let j = 0; j < prefix.length; j++) {
+      console.log("second loop");
+
       for (let k = 0; k < suffix.length; k++) {
+        console.log("third loop");
+
         if (word === prefix[j].concat(suffix[k])) {
           allCompoundWords.push(word);
         }
@@ -274,9 +308,9 @@ const getAllCompoundWords = (dictionary) => {
   return allCompoundWords;
 };
 
-console.log(getPrefix(list));
-console.log(getSuffix(list));
-console.log(getAllCompoundWords(list));
+// console.log(getPrefix(list));
+// console.log(getSuffix(list));
+// console.log(getAllCompoundWords(list));
 
 // [ ] Finding alphabet chains:
 //     - First, what are all of the words that have a least one “A”, one “B”, one “C”, one “D”, one “E”, and one “F” in them, in any order?

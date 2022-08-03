@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { get } = require("http");
 const sowpods = fs.readFileSync("./sowpods.txt", "utf-8").split("\r\n");
 // [ ] What are all of the words containing UU?
 
@@ -11,8 +12,20 @@ const getAllUUWords = (wordlist) => {
   }
   return allUUWords;
 };
-console.log("getAllUUWords", getAllUUWords(sowpods));
+// console.log("getAllUUWords", getAllUUWords(sowpods));
+
 // [ ] What are all of the words containing an X and a Y and a Z?
+const getAllWordsWithXYZ = (dictionary) => {
+  let allWordsWithXYZ = [];
+  for (let word of dictionary) {
+    if (word.includes("X") && word.includes("Y") && word.includes("Z")) {
+      allWordsWithXYZ.push(word);
+    }
+  }
+  return allWordsWithXYZ;
+};
+// console.log(getAllWordsWithXYZ(sowpods));
+
 // [ ] What are all of the words containing a Q but not a U?
 // [ ] What are all of the words that contain the word CAT and are exactly 5 letters long?
 // [ ] What are all of the words that have no E or A and are at least 15 letters long?
