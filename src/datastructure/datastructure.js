@@ -116,14 +116,24 @@ hashMap.set("rat", 7);
 hashMap.set("dog", 1);
 hashMap.set("art", 8);
 
-console.log("collisions: ", hashMap.collisions); // 2
-console.log(hashMap.buckets);
+// console.log("collisions: ", hashMap.collisions); // 2
+// console.log(hashMap.buckets);
 
-console.log(hashMap.hash("cat"));
-console.log(hashMap.hash("cat") % 2);
-console.log(hashMap.hash("art"));
-console.log(hashMap.hash("art") % 2);
-console.log(hashMap.hash("dog"));
-console.log(hashMap.hash("dog") % 2);
-console.log(hashMap.hash("rat"));
-console.log(hashMap.hash("rat") % 2);
+// console.log(hashMap.hash("cat"));
+// console.log(hashMap.hash("cat") % 2);
+// console.log(hashMap.hash("art"));
+// console.log(hashMap.hash("art") % 2);
+// console.log(hashMap.hash("dog"));
+// console.log(hashMap.hash("dog") % 2);
+// console.log(hashMap.hash("rat"));
+// console.log(hashMap.hash("rat") % 2);
+
+const hashMapSize10 = new DecentHashMap(10);
+
+hashMapSize10.set("cat", 2);
+hashMapSize10.set("rat", 7);
+hashMapSize10.set("dog", 1);
+hashMapSize10.set("art", 8);
+
+console.log("collisions: ", hashMapSize10.collisions); // 1
+console.log("hashMapSize10\n", hashMapSize10.buckets);
