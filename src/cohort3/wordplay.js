@@ -27,6 +27,7 @@ for (let word of sowpods) {
 // console.log(allWordsWithXYZ);
 
 // [ ] What are all of the words containing a Q but not a U?
+
 // [ ] What are all of the words that contain the word CAT and are exactly 5 letters long?
 // [ ] What are all of the words that have no E or A and are at least 15 letters long?
 // [ ] What are all of the words that have a B and an X and are less than 5 letters long?

@@ -217,6 +217,17 @@ let dict = new Set([
 ]);
 let memo = new Object();
 
+const list = [
+  "BEACH",
+  "MAN",
+  "KEEPER",
+  "SNOW",
+  "SNOWMAN",
+  "RAN",
+  "ZOO",
+  "ZOOKEEPER",
+  "BALL",
+];
 function backtracking(depth, s, wordSet, sub) {
   let n = s.length;
   // accept
@@ -266,23 +277,39 @@ const getWord = (list) => {
 //   'ZOOKEEPER', 'BALL'
 // ]
 // output: ['SNOWMAN', 'BEACHBALL', 'ZOOKEEPER]
+const getPrefix = (dictionary) => {
+  console.log("getting prefix");
 
-// const getSuffix = (dictionary) => {
-//   console.log("getting suffix");
+  let prefix = [];
 
-//   let suffix = [];
+  for (let i = 0; i < dictionary.length; i++) {
+    let word = dictionary[i];
 
-//   for (let i = 0; i < dictionary.length; i++) {
-//     let word = dictionary[i];
+    for (let j = i + 1; j < dictionary.length; j++) {
+      if (dictionary[j].startsWith(word)) {
+        prefix.push(word);
+      }
+    }
+  }
+  return prefix;
+};
 
-//     for (let j = i + 1; j < dictionary.length; j++) {
-//       if (dictionary[j].endsWith(word)) {
-//         suffix.push(word);
-//       }
-//     }
-//   }
-//   return suffix;
-// };
+const getSuffix = (dictionary) => {
+  console.log("getting suffix");
+
+  let suffix = [];
+
+  for (let i = 0; i < dictionary.length; i++) {
+    let word = dictionary[i];
+
+    for (let j = i + 1; j < dictionary.length; j++) {
+      if (dictionary[j].endsWith(word)) {
+        suffix.push(word);
+      }
+    }
+  }
+  return suffix;
+};
 
 const getAllCompoundWords = (dictionary, s) => {
   console.log("getting all compound words");
@@ -310,7 +337,7 @@ const getAllCompoundWords = (dictionary, s) => {
 
 // console.log(getPrefix(list));
 // console.log(getSuffix(list));
-// console.log(getAllCompoundWords(list));
+console.log(getAllCompoundWords(list));
 
 // [ ] Finding alphabet chains:
 //     - First, what are all of the words that have a least one “A”, one “B”, one “C”, one “D”, one “E”, and one “F” in them, in any order?

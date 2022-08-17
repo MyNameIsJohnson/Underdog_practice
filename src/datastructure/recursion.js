@@ -73,11 +73,42 @@ const isPalindrome = (str, len) => {
 // console.log(palindrome);
 
 const count_partitions = (n, m) => {
-  if (n === 0) {
+  if (n > 0) {
     return 1;
   } else if (m === 0 || n === 0) {
     return 0;
   } else {
-    return count_partitions(n - m);
+    return count_partitions(n, n - m);
   }
 };
+
+// console.log(count_partitions(4, 3));
+
+var fib = function (n) {
+  if (n <= 1) {
+    return n;
+  } else {
+    return fib(n - 1) + fib(n - 2);
+  }
+};
+
+const feedCat = (cans_of_food) => {
+  if (cans_of_food <= 0) {
+    // recursive case
+    console.log("There are no more cans of food, the cat is full... hopefully");
+  } else {
+    // # base case,  cans_of_food <= 0;
+    console.log("cat is still hungry");
+    feedCat(cans_of_food - 1);
+  }
+};
+
+// const feedCat = (cans_of_food) => {
+//   while (cans_of_food > 0) {
+//     console.log("The cat is still hungry");
+//     cans_of_food -= 1;
+//   }
+//   console.log("There are no more cans of food, the cat is full... hopefully");
+// };
+
+feedCat(4); // #feed your cat 4 times to make them full!
