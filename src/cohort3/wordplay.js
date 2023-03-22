@@ -28,7 +28,103 @@ for (let word of sowpods) {
 
 // [ ] What are all of the words containing a Q but not a U?
 
+// loop through dict and isolate each word to be checked for Q but not U
+// if word has Q and does not have U
+// push that word into array wordsWithQButNotU
+//return wordsWithQButNotU
+
+// ====> practice this first: ask edge cases, because understanding what data type I'm using will help
+
+// How is this being used *
+
+const getWordsWithQButNotU = (dictionary) => {
+  let wordsWithQButNotU = [];
+  for (let word of dictionary) {
+    console.log(word);
+    if (word.includes("Q") && !word.includes("U")) {
+      wordsWithQButNotU.push(word);
+    }
+  }
+  return wordsWithQButNotU;
+};
+
+let dict = ["UMBRELLA", "Q-TIP", "READY", "QUITB"];
+// console.log("getWordsWithQButNotU", getWordsWithQButNotU(dict));
+// console.log("empty array", getWordsWithQButNotU([]));
+// console.log("getWordsWithQButNotU", getWordsWithQButNotU([""]));
+// console.log("getWordsWithQButNotU", getWordsWithQButNotU([""]));
+
 // [ ] What are all of the words that contain the word CAT and are exactly 5 letters long?
+
+// Does CAT have to be consecitive? Can they be in random order? Is the dictionary a list of strings? Is the dictionary cap sentsitive?
+
+// We have to check if words from the dictionary contains CAT and is only 5 letters. We want to loop through the dictionary and extract each word in the dictionary to run these conditionals. If the word being checked meets the conditional, push the word into an empty array to be returned when function is called.
+
+const assertEqualsAllWordsWithCATand5Letters = (actual, expected, testName) => {
+  actual = JSON.stringify(actual);
+  expected = JSON.stringify(expected);
+  if (actual === expected) {
+    console.log("Passed " + testName);
+    return actual;
+  } else {
+    console.log(
+      "Failed [" + testName + "]\n Expected: " + expected + " but got " + actual
+    );
+    return expected;
+  }
+};
+
+let list = [
+  "AA",
+  "AB",
+  "ABA",
+  "ABAC",
+  "ABACA",
+  "ABB",
+  "ABBA",
+  "ACCAT",
+  "AD",
+  "ADD",
+  "BA",
+  "BAA",
+  "BABA",
+  "BAC",
+  "BACCA",
+  "BAD",
+  "CAA",
+  "CAB",
+  "CATBA",
+  "CACA",
+  "CAD",
+  "DA",
+  "DAB",
+  "DABBA",
+  "DAD",
+  "DADA",
+];
+
+let expected = ["CATBA", "ACCAT"];
+
+const getAllWordsWithCATand5Letters = (dictionary) => {
+  let wordsWithCATand5Letters = [];
+  for (let i = 0; i < dictionary.length; i++) {
+    let word = dictionary[i];
+    if (word.length === 5 && word.includes("CAT")) {
+      wordsWithCATand5Letters.push(word);
+    }
+  }
+  return wordsWithCATand5Letters;
+};
+expected.sort();
+
+console.log(
+  assertEqualsAllWordsWithCATand5Letters(
+    getAllWordsWithCATand5Letters(list),
+    expected,
+    "getAllWordsWithCATand5Letters"
+  )
+);
+
 // [ ] What are all of the words that have no E or A and are at least 15 letters long?
 // [ ] What are all of the words that have a B and an X and are less than 5 letters long?
 // [ ] What are all of the words that both start and end with a Y?
@@ -79,7 +175,7 @@ const getLongestWordWithNoVowels = (wordlist) => {
   });
   return list[0];
 };
-console.log(getLongestWordWithNoVowels(sowpods));
+// console.log(getLongestWordWithNoVowels(sowpods));
 
 // [ ] Which of the letters Q, X, and Z is the least common?
 
@@ -107,6 +203,6 @@ function leastCommonLetter(str) {
   return Object.keys(arr).filter((key) => arr[key] == min);
 }
 
-console.log(leastCommonLetter(text));
+// console.log(leastCommonLetter(text));
 // [ ] What is the longest palindrome?
 // [ ] What are all of the letters that never appear consecutively in an English word? For example, we know that “U” isn’t an answer, because of the word VACUUM, and we know that “A” isn’t an answer, because of “AARDVARK”, but which letters never appear consecutively?
